@@ -1,0 +1,19 @@
+{
+  "name": " 328/cat-wishes",
+  "authors":
+  [
+    {
+      "name":"Bessy Torres-Miller",
+      "email":"btorres-miller@mail.greenriver.edu"
+    },
+
+    {
+      "name":"Melanie Felton",
+      "email":"mfelton@mail.greenriver.edu"
+    }
+
+  ],
+  "require":{
+    "bcosca/fatfree-core":"dev-master"
+  }
+}
