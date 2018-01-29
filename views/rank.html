@@ -28,16 +28,12 @@
     </ul>
 </nav>
     <div class="row mx-3 my-3 py-3 px-4 border border-light">
-             <h1 class="h2 text-center">Click any of the following {{ @basicObjectType}}s that your cat likes:</h1>
+             <h1 class="h2 text-center">2Click any of the following {{ @basicObjectType}}s that your cat likes:</h1>
             <form>
-            <repeat>
-
-            </repeat>
+                <repeat group = "{{@Toys}}" key="{{@key}}" value="{{@value}}" >
+                    <p><b>{{@key}}</b> has been recommended <b>{{@value}}</b> times</p>
+                </repeat>
             </form>
-        <div class="col-sm-6 col-med-6">
-            <img src="images/pexels-photo-209651.jpeg" class="img-fluid rounded" alt="Four colored game pieces.">
-        </div>
-
     </div>
 
 
