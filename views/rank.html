@@ -1,15 +1,19 @@
 <include href="views/header.html"/>
 
+<div class="mx-3 my-3 py-3 px-4 border border-light">
 
-    <div class="row mx-3 my-3 py-3 px-4 border border-light">
-             <h1 class="h2 text-center">2Click any of the following {{ @basicObjectType}}s that your cat likes:</h1>
-            <form>
-                <repeat group = "{{@Toys}}" key="{{@key}}" value="{{@value}}" >
-                    <p><b>{{@key}}</b> has been recommended <b>{{@value}}</b> times</p>
-                </repeat>
-            </form>
-    </div>
+    <h1 class="row h2 text-center">2Click any of the following {{ @basicObjectType}}s that your cat likes:</h1>
 
+        <form class="row w-100 py-3">
+            <repeat group="{{@Toys}}" key="{{@key}}" value="{{@value}}">
+                <div class="col-md-3">
+                    <input type="checkbox" name="recommends[]"> <b>{{@key}}</b> ( <b>{{@value}}</b> )</input>
+                </div>
+            </repeat>
+            <button class="btn btn-success btn-block btn-lg mx-3 my-3" type="submit" name="submit">Submit Recommendations</button>
+        </form>
+
+</div>
 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"
         integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4"
