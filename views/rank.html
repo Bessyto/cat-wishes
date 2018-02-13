@@ -2,12 +2,12 @@
 
 <div class="mx-3 my-3 py-3 px-4 border border-light">
 
-    <h1 class="row h2 text-center">2Click any of the following {{ @basicObjectType}}s that your cat likes:</h1>
+    <h1 class="row h2 text-center">Click any of the following {{ @basicObjectType}}s that your cat likes:</h1>
 
-        <form class="row w-100 py-3">
+        <form method="post" action="#" class="row w-100 py-3">
             <repeat group="{{@Toys}}" key="{{@key}}" value="{{@value}}">
-                <div class="col-md-3">
-                    <input type="checkbox" name="recommends[]"> <b>{{@key}}</b> ( <b>{{@value}}</b> )</input>
+                <div class="col-md-3 py-3">
+                    <input type="checkbox" name="recommends[]" value="{{@key}}"> <b>{{@key}}</b> ( <b>{{@value}}</b> )</input>
                 </div>
             </repeat>
             <button class="btn btn-success btn-block btn-lg mx-3 my-3" type="submit" name="submit">Submit Recommendations</button>

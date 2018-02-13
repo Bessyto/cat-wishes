@@ -15,7 +15,8 @@ $f3->route('GET /', function() {
 }
 );
 
-$f3->route('GET /recommend', function($f3) {
+$f3->route('GET|POST /recommend', function($f3) {
+//    $f3->set("recommend",$_POST['recommend']);
     $f3->set("basicObjectType","Toy");
 //    $f3->set("Toys",array(array("Tear-apart Dog","Cat can tear apart dog and then you velcro him back together",5),
 //        array("Tear-apart Doggy","Cat can tear apart dog and then you velcro him back together",5),
@@ -24,6 +25,9 @@ $f3->route('GET /recommend', function($f3) {
 //        array("Add A Toy Toy","Does your cat like something else? Add it here.",0)));
     $f3->set("Toys",array("Tear-apart Dog"=>5,"Tear-apart Doggy"=>6,"Long Dancing Fingers"=>10
             ,"Catnip Ball"=>3,"Add A Toy Toy"=>0));
+
+
+
     $template = new Template;
     echo $template->render
     ('views/rank.html');
