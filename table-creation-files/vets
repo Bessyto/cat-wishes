@@ -1,0 +1,8 @@
+CREATE TABLE vets (
+    id INT(3) AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(20) NOT NULL,
+    address VARCHAR(200) NOT NULL,
+    recommendation INT(4) NOT NULL,
+    link VARCHAR(200),
+    phone VARCHAR(20)
+);
