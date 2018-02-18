@@ -6,7 +6,8 @@
  * Time: 1:56 PM
  */
 
-require("/home/btorresm/config.php");
+include("/home/btorresm/config.php");
+include("/home/mfeltong/config_files/config.php");
 
 function connect()
 {
