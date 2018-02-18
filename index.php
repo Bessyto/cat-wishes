@@ -33,7 +33,7 @@ $f3->route('GET /recommend', function($f3) {
     $f3->set("Toys",array("Tear-apart Dog"=>5,"Tear-apart Doggy"=>6,"Long Dancing Fingers"=>10
             ,"Catnip Ball"=>3,"Add A Toy Toy"=>0));
 
-    toys = getToys();
+    $toys = getToys();
 
     if(!is_null()) {
         $f3->set("Toys", toys);
