@@ -5,3 +5,7 @@ CREATE TABLE toys (
     recommendation INT(4) NOT NULL,
     image VARCHAR(200)
 );
+
+INSERT INTO toys (name, description, recommendation, image)
+        VALUES('Laser Pointer', 'A fun red laser that can be used to give your pets plenty of exercise.  Just point the laser and move it around and watch cats chase and hunt the dot',
+              '10', 'images/laserPointer.jpg')
