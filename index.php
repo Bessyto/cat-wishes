@@ -3,8 +3,9 @@ ini_set('display_error' ,1);
 error_reporting(E_ALL);
 
 require_once('vendor/autoload.php');
-require_once 'model/db-functions.php';
 session_start();
+
+require_once 'model/db-functions.php';
 
 $f3 = Base::instance();
 $f3->set("DEBUG",3);
