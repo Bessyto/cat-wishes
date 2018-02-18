@@ -11,8 +11,8 @@
 /**
  * Class "BasicObject" represents any object on the cat wishes website.
  *
- * The Basic class representa a Member with a first name,
- * last name, age, gender, phone, email, state, seeking, bio
+ * The Basic class representa a Basic Object with a name,
+ * description and a count of the number of recommendations
  *
  * @author Melanie Felton (mfelton@mail.greenriver.edu)
  * @copyright 2017

@@ -1,12 +1,16 @@
 <?php
 ini_set('display_error' ,1);
 error_reporting(E_ALL);
-session_start();
 
 require_once('vendor/autoload.php');
+require_once 'model/db-functions.php';
+session_start();
 
 $f3 = Base::instance();
 $f3->set("DEBUG",3);
+
+//Connect to the database
+$dbh = connect();
 
 $f3->set ("Carousel",array("Toys"=> "images/carouselToys.jpg","Food"=>"images/carouselFood.jpg",
     "Furniture"=> "images/carouselFurniture.jpg", "Vets"=> "images/carouselVet.jpg"));
@@ -28,6 +32,12 @@ $f3->route('GET /recommend', function($f3) {
 //        array("Add A Toy Toy","Does your cat like something else? Add it here.",0)));
     $f3->set("Toys",array("Tear-apart Dog"=>5,"Tear-apart Doggy"=>6,"Long Dancing Fingers"=>10
             ,"Catnip Ball"=>3,"Add A Toy Toy"=>0));
+
+    toys = getToys();
+
+    if(!is_null()) {
+        $f3->set("Toys", toys);
+    }
     $template = new Template;
     echo $template->render
     ('views/rank.html');
