@@ -30,7 +30,7 @@ function updateRecommendation($table, $id, $recommendation){
 
     //1. Define the query
 //    $sql = "UPDATE :table SET recommendation = :recommendation WHERE id = :id";
-    $sql = "UPDATE toys SET recommendation = :recommendation WHERE id = :id";
+    $sql = "UPDATE ". $table . " SET recommendation = :recommendation WHERE id = :id";
 
     //2. Prepare the statement
     $statement = $dbh->prepare($sql);
