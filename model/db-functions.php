@@ -6,21 +6,51 @@
  * Time: 1:56 PM
  */
 
-include("/home/btorresm/config.php");
-include("/home/mfeltong/config_files/config.php");
+    require("/home/mfeltong/config_files/config.php");
+//    require("/home/btorresm/config.php");
 
-function connect()
+
+    function connect()
 {
     try
     {
-        $dbh = new PDO("DBDSN", "DBUSERNAME", "DBPASSWORD");
-        echo "<p>Connected to database!</p>";
+        $dbh = new PDO(DB_DSN, DB_USERNAME, DB_PASSWORD);
+//        echo "<p>Connected to database!</p>";
         return $dbh;
     }
     catch (PDOException $e)
     {
         echo $e->getMessage();
     }
+}
+
+function updateRecommendation($table, $id, $recommendation){
+    //gives access to the variable in index
+    global  $dbh;
+
+    //1. Define the query
+//    $sql = "UPDATE :table SET recommendation = :recommendation WHERE id = :id";
+    $sql = "UPDATE toys SET recommendation = :recommendation WHERE id = :id";
+
+    //2. Prepare the statement
+    $statement = $dbh->prepare($sql);
+
+    //3. Bind parameters
+    $idNum = intval($id);
+    $recNum = intval($recommendation);
+//    $statement->bindValue(':table',$table, PDO::PARAM_STR );
+    $statement->bindParam(':id', $idNum, PDO::PARAM_INT );
+    $statement->bindParam(':recommendation', $recNum, PDO::PARAM_INT );
+
+    echo "$table $idNum $recNum";
+
+    //4.Execute statement
+    $statement->execute();
+
+    //5. Return the results
+
+    return;
+
 }
 
 //Get One Toy (a single row) from Database

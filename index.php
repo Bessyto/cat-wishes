@@ -1,5 +1,5 @@
 <?php
-ini_set('display_error' ,1);
+ini_set('display_error', 1);
 error_reporting(E_ALL);
 
 require_once('vendor/autoload.php');
@@ -8,40 +8,68 @@ session_start();
 require_once 'model/db-functions.php';
 
 $f3 = Base::instance();
-$f3->set("DEBUG",3);
+$f3->set("DEBUG", 3);
 
 //Connect to the database
 $dbh = connect();
 
-$f3->set ("Carousel",array("Toys"=> "images/carouselToys.jpg","Food"=>"images/carouselFood.jpg",
-    "Furniture"=> "images/carouselFurniture.jpg", "Vets"=> "images/carouselVet.jpg"));
+$f3->set("Carousel", array("Toys" => "images/carouselToys.jpg", "Food" => "images/carouselFood.jpg",
+    "Furniture" => "images/carouselFurniture.jpg", "Vets" => "images/carouselVet.jpg"));
 
 
-$f3->route('GET /', function() {
+$f3->route('GET /', function () {
     $template = new Template;
     echo $template->render
     ('views/home.html');
 }
 );
 
-$f3->route('GET /recommend', function($f3) {
-    $f3->set("basicObjectType","Toy");
-//    $f3->set("Toys",array(array("Tear-apart Dog","Cat can tear apart dog and then you velcro him back together",5),
-//        array("Tear-apart Doggy","Cat can tear apart dog and then you velcro him back together",5),
-//        array("Long Dancing Fingers","Cat attacks tips of 'fingers' rather than yours.",6),
-//        array("Catnip Ball","Soft ball filled with catnip your cat will chase until he drops",2),
-//        array("Add A Toy Toy","Does your cat like something else? Add it here.",0)));
-    $f3->set("Toys",array("Tear-apart Dog"=>5,"Tear-apart Doggy"=>6,"Long Dancing Fingers"=>10
-            ,"Catnip Ball"=>3,"Add A Toy Toy"=>0));
+$f3->route('GET|POST /recommend', function ($f3) {
 
-    $toys = getToys();
+    $f3->set("basicObjectType", "Toy");
 
-    if(!is_null()) {
-        $f3->set("Toys", toys);
+    $itemsArray = getToys();
+    $i = 0;
+
+//    echo '<p style="color:white;"><pre style="color:white;">';
+//    var_dump($itemsArray);
+//    echo '</pre></p>';
+
+    foreach ($itemsArray as $item) {
+        $id = $item['id'];
+        $name = $item['name'];
+        $description = $item['description'];
+        $recommendations = $item['recommendation'];
+        $image = $item['image'];
+        $toy = new Toy($id, $name, $description, $recommendations, $image);
+        $toys[$i] = $toy;
+        $i++;
     }
+    echo '<p style="color:white;"><pre style="color:white;">';
+    var_dump($toys);
+    echo '</pre></p>';
+    if (!is_null($toys)) {
+        $arrayName = get_class($toys[0]) . 's';
+        $f3->set($arrayName, $toys);
+    }
+
+    if (isset($_POST['submit'])) {
+        $recommendItems = $_POST['recommends'];
+        foreach ($toys as $item) {
+            if (in_array($item->getName(), $recommendItems)) {
+                $table = strtolower($arrayName);
+                $id = $item->getId();
+                $recommendation = $item->getRecommendations() + 1;
+                updateRecommendation($table, $id, $recommendation);
+            }
+        }
+        $f3->reroute('/recommend');
+    }
+
     $template = new Template;
     echo $template->render
     ('views/rank.html');
+
 }
 );
 

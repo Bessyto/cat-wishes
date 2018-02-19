@@ -20,21 +20,40 @@
  */
 class BasicObject
 {
+    protected $id;
     protected $name;
     protected $description;
     protected $recommendations;
 
     /**
      * BasicObject constructor.
+     * @param $id
      * @param $name
      * @param $description
      * @param $recommendations
      */
-    public function __construct($name = "Generic Toy", $description = "Does nothing.", $recommendations = 0)
+    public function __construct($id, $name = "Generic Toy", $description = "Does nothing.", $recommendations = 0)
     {
+        $this->id = $id;
         $this->name = $name;
         $this->description = $description;
         $this->recommendations = $recommendations;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
     }
 
     /**
@@ -84,8 +103,4 @@ class BasicObject
     {
         $this->recommendations = $recommendations;
     }
-
-
-
-
 }
