@@ -11,7 +11,7 @@
 /**
  * Class "BasicObject" represents any object on the cat wishes website.
  *
- * The Basic class representa a Basic Object with a name,
+ * The Basic class representa a Basic Object with an id, a name,
  * description and a count of the number of recommendations
  *
  * @author Melanie Felton (mfelton@mail.greenriver.edu)
@@ -32,7 +32,7 @@ class BasicObject
      * @param $description
      * @param $recommendations
      */
-    public function __construct($id, $name = "Generic Toy", $description = "Does nothing.", $recommendations = 0)
+    public function __construct($id = 0, $name = "Generic Toy", $description = "Does nothing.", $recommendations = 0)
     {
         $this->id = $id;
         $this->name = $name;

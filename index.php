@@ -24,11 +24,15 @@ $f3->route('GET /', function () {
 }
 );
 
-$f3->route('GET|POST /recommend', function ($f3) {
+$f3->route('GET|POST /recommend', function ($f3, $params) {
 
-    $f3->set("basicObjectType", "Toy");
+    $basicObjectType = 'Toy';
+//    $basicObjectType = $params['basicObjectType'];
+    echo "$basicObjectType";
+    $f3->set('basicObjectType', 'Toy');
 
-    $itemsArray = getToys();
+    $table = 'toys';
+    $itemsArray = getItems($table);
     $i = 0;
 
 //    echo '<p style="color:white;"><pre style="color:white;">';
@@ -41,8 +45,13 @@ $f3->route('GET|POST /recommend', function ($f3) {
         $description = $item['description'];
         $recommendations = $item['recommendation'];
         $image = $item['image'];
-        $toy = new Toy($id, $name, $description, $recommendations, $image);
-        $toys[$i] = $toy;
+
+        $itemObj = null;
+        if(strcmp($basicObjectType,'Toy') == 0) {
+            $itemObj = new Toy($id, $name, $description, $recommendations, $image);
+        }
+//        $itemObj = new Toy($id, $name, $description, $recommendations, $image);
+        $toys[$i] = $itemObj;
         $i++;
     }
     echo '<p style="color:white;"><pre style="color:white;">';

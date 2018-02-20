@@ -78,18 +78,19 @@ function getToy($id)
 }
 
 //Get Toys from Database
-function getToys()
+function getItems($table)
 {
     //gives access to the variable in index
     global  $dbh;
 
     //1. Define the query
-    $sql = "SELECT * FROM toys ";
+    $sql = "SELECT * FROM ".$table;
 
     //2. Prepare the statement
     $statement = $dbh->prepare($sql);
 
     //3. Bind parameters
+    $statement->bindParam(':table',$table, PDO::PARAM_STR );
 
     //4.Execute statement
     $statement->execute();
