@@ -4,15 +4,25 @@
 
     <h1 class="row h2 text-center">21Click any of the following {{ @basicObjectType}}s that your cat likes:</h1>
 
-        <form method="post" action="#" class="row w-100 py-3">
-            <repeat group="{{@Toys}}" key="{{@key}}" value = "{{@toy}}">
-                <div class="col-md-3 py-3">
-                    <input type="checkbox" name="recommends[]" value="{{@toy->getName()}}">
-                    <b>{{@toy->getName()}}</b> ( <b>{{@toy->getRecommendations()}}</b> )</input>
-                </div>
-            </repeat>
-            <button class="btn btn-success btn-block btn-lg mx-3 my-3" type="submit" name="submit">Submit Recommendations</button>
-        </form>
+    <form method="post" action="#" class="row w-100 py-3">
+        <repeat group="{{@Toys}}" key="{{@key}}" value="{{@toy}}">
+            <div class="col-md-3 py-3">
+                <input type="checkbox" name="recommends[]" value="{{@toy->getName()}}">
+                <b>{{@toy->getName()}}</b> ( <b>{{@toy->getRecommendations()}}</b> )</input>
+            </div>
+        </repeat>
+        <check if="true">
+            <div class="col-md-3 py-3">
+                <input type="checkbox" name="recommends[]" value="new"></input>
+                <input type="text" name="itemName"></input>
+
+                <textarea name="description">Description:</textarea>
+
+            </div>
+        </check>
+        <button class="btn btn-success btn-block btn-lg mx-3 my-3" type="submit" name="submit">Submit Recommendations
+        </button>
+    </form>
 
 </div>
 
