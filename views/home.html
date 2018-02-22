@@ -22,64 +22,39 @@
                 <div class="carousel slide" id="featured" data-ride="carousel" data-keyboard="true">
                     <div class="carousel-inner">
 
-                        <repeat group="{{@Carousel}}" key="{{@key}}" value="{{@value}}">
-                            <check if="{{@key == 'Toys'}}">
-                                <true>
-                                    <div class="carousel-item-active">
-                                        <img class="img-fluid rounded mx-auto d-block align-middle" src="{{@value}}"
-                                             alt="{{@key}}">
-                                        <div class="carousel-caption d-none d-md-block">
-                                            <h4 class="text-center text-success font-weight-bold">{{@key}}</h4>
 
-                                        </div>
-                                    </div>
+                        <div class="carousel-item active">
+                        <img class="img-fluid rounded mx-auto d-block align-middle" src="images/carouselToys.jpg" alt="toys1">
+                        <div class="carousel-caption d-none d-md-block">
+                        <h4 class="text-center text-success font-weight-bold">CAT TOYS</h4>
 
-                                </true>
-                                <false>
-                                    <div class="carousel-item center">
-                                        <img class="img-fluid rounded mx-auto d-block align-middle" src="{{@value}}"
-                                             alt="{{@key}}">
-                                        <div class="carousel-caption d-none d-md-block">
-                                            <h4 class="text-center text-success font-weight-bold">{{@key}}</h4>
-                                        </div>
-                                    </div>
-                                </false>
-                            </check>
+                        </div>
+                        </div> <!--carousel item1-->
 
-                        </repeat>
+                        <div class="carousel-item center">
+                        <img class="img-fluid rounded mx-auto d-block align-middle" src="images/carouselFood.jpg" alt="food">
+                        <div class="carousel-caption d-none d-md-block">
+                        <h4 class="text-center text-danger font-weight-bold">CAT FOOD</h4>
 
-                    <!--<div class="carousel-item active">-->
-                    <!--<img class="img-fluid rounded mx-auto d-block align-middle" src="images/carouselToys.jpg" alt="toys1">-->
-                    <!--<div class="carousel-caption d-none d-md-block">-->
-                    <!--<h4 class="text-center text-success font-weight-bold">CAT TOYS</h4>-->
+                        </div>
+                        </div> <!--carousel item2-->
 
-                    <!--</div>-->
-                    <!--</div> &lt;!&ndash;carousel item1&ndash;&gt;-->
+                        <div class="carousel-item center">
+                        <img class="img-fluid rounded mx-auto d-block align-middle" src="images/carouselFurniture.jpg" alt="furniture">
+                        <div class="carousel-caption d-none d-md-block">
+                        <h4 class="text-center text-success font-weight-bold">CAT FURNITURE</h4>
 
-                    <!--<div class="carousel-item center">-->
-                    <!--<img class="img-fluid rounded mx-auto d-block align-middle" src="images/carouselFood.jpg" alt="food">-->
-                    <!--<div class="carousel-caption d-none d-md-block">-->
-                    <!--<h4 class="text-center text-danger font-weight-bold">CAT FOOD</h4>-->
+                        </div>
+                        </div> <!--carousel item3-->
 
-                    <!--</div>-->
-                    <!--</div> &lt;!&ndash;carousel item2&ndash;&gt;-->
+                        <div class="carousel-item center">
+                        <img class="img-fluid rounded mx-auto d-block align-middle" src="images/carouselVet.jpg" alt="vet">
+                        <div class="carousel-caption d-none d-md-block">
+                        <h4 class="text-center text-success font-weight-bold">CAT VETS-CARES</h4>
 
-                    <!--<div class="carousel-item center">-->
-                    <!--<img class="img-fluid rounded mx-auto d-block align-middle" src="images/carouselFurniture.jpg" alt="furniture">-->
-                    <!--<div class="carousel-caption d-none d-md-block">-->
-                    <!--<h4 class="text-center text-success font-weight-bold">CAT FURNITURE</h4>-->
-
-                    <!--</div>-->
-                    <!--</div> &lt;!&ndash;carousel item3&ndash;&gt;-->
-
-                    <!--<div class="carousel-item center">-->
-                    <!--<img class="img-fluid rounded mx-auto d-block align-middle" src="images/carouselVet.jpg" alt="vet">-->
-                    <!--<div class="carousel-caption d-none d-md-block">-->
-                    <!--<h4 class="text-center text-success font-weight-bold">CAT VETS-CARES</h4>-->
-
-                    <!--</div>-->
-                    <!--</div> &lt;!&ndash;carousel item4&ndash;&gt;-->
-                </div>  <!-- carousel inner -->
+                        </div>
+                        </div> <!--carousel item4-->
+                    </div>  <!-- carousel inner -->
 
                 <!--carousel buttons-->
                 <a class="carousel-control-prev" href="#featured" role="button" data-slide="prev">
