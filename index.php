@@ -82,5 +82,14 @@ $f3->route('GET|POST /recommend', function ($f3, $params) {
 }
 );
 
+
+$f3->route('GET /item', function () {
+    $template = new Template;
+    echo $template->render
+    ('views/newItem.html');
+}
+);
+
+
 $f3->run();
 ?>
