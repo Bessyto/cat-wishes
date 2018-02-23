@@ -2,13 +2,18 @@
 
 <div class="mx-3 my-3 py-3 px-4 border border-light">
 
-    <h1 class="row h2 text-center">21Click any of the following {{ @basicObjectType}}s that your cat likes:</h1>
+    <h1 class="row h2 text-center">Click any of the following {{ @basicObjectType}}s that your cat likes:</h1>
 
     <form method="post" action="#" class="row w-100 py-3">
         <repeat group="{{@Toys}}" key="{{@key}}" value="{{@toy}}">
             <div class="col-md-3 py-3">
                 <input type="checkbox" name="recommends[]" value="{{@toy->getName()}}">
                 <b>{{@toy->getName()}}</b> ( <b>{{@toy->getRecommendations()}}</b> )</input>
+                <check if="true">
+                    <input class="btn btn-danger btn-block btn-sm mx-3 my-3"
+                            type="submit" name="submit" value="Delete {{@toy->getName()}}">
+                    </input>
+                </check>
             </div>
         </repeat>
         <check if="true">
@@ -20,8 +25,8 @@
 
             </div>
         </check>
-        <button class="btn btn-success btn-block btn-lg mx-3 my-3" type="submit" name="submit">Submit Recommendations
-        </button>
+        <input class="btn btn-success btn-block btn-lg mx-3 my-3" type="submit" name="submit" value="Recommend">
+        </input>
     </form>
 
 </div>

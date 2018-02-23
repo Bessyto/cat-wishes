@@ -52,6 +52,38 @@ function updateRecommendation($table, $id, $recommendation){
 
 }
 
+function addItem($table, $name, $description, $recommendation, $image){
+    //gives access to the variable in index
+    global  $dbh;
+
+    //1. Define the query
+    $sql = "INSERT INTO toys";
+    $sql = $sql." (name, description,";
+    $sql = $sql." recommendation, image) ";
+
+//    $sql = $sql."VALUES ( 'Catnip Sock', 'A baby sock filled with catnip', ";
+//    $sql = $sql." 1 , '')";
+//    echo $sql;
+    $sql = $sql."VALUES ( :name, :description, ";
+    $sql = $sql.":recommendation, :image)";
+
+    //2. Prepare the statement
+    $statement = $dbh->prepare($sql);
+
+    //3. Bind parameters
+    $statement->bindParam(':name',$name, PDO::PARAM_STR );
+    $statement->bindParam(':description',$description, PDO::PARAM_STR );
+    $statement->bindParam(':recommendation',$recommendation, PDO::PARAM_INT );
+    $statement->bindParam(':image',$image, PDO::PARAM_STR );
+
+    //4.Execute statement
+    $statement->execute();
+
+    //5. Return the results
+    return;
+
+}
+
 //Get One Toy (a single row) from Database
 function getToy($id)
 {
