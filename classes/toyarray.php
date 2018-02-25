@@ -5,10 +5,10 @@ Class ToyArray extends DataObject
     private $toys = "none";
 
     function __construct(){
-        $dataObject = new DataObject();
-        $dbh = $dataObject->connect();
-        $items = $dataObject->getItems('toys');
-        $dataObject->close();
+//        $dataObject = new DataObject();
+        $dbh = Parent::connect();
+        $items = Parent::getItems('toys');
+        Parent::close();
 
         //change all items retrieved into toys
         $i = 0;

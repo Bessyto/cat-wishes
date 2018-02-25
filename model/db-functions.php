@@ -9,7 +9,7 @@
 require ("getConfig.php");
 class DataObject
 {
-    private $dbh;
+    protected $dbh;
 
     function connect()
     {
@@ -121,13 +121,14 @@ class DataObject
         global $dbh;
 
         //1. Define the query
-        $sql = "SELECT * FROM " . $table;
+//        $sql = "SELECT * FROM " . $table;
+        $sql = "SELECT * FROM toys";
 
         //2. Prepare the statement
         $statement = $dbh->prepare($sql);
 
         //3. Bind parameters
-        //$statement->bindParam(':table', $table, PDO::PARAM_STR);
+        $statement->bindParam(':table', $table, PDO::PARAM_STR);
 
         //4.Execute statement
         $statement->execute();
