@@ -6,9 +6,9 @@ Class ToyArray extends DataObject
 
     function __construct(){
         $dataObject = new DataObject();
-        $dbh = $dataObject.connect();
-        $items = $dataObject.getItems('toys');
-        $dataObject.close();
+        $dbh = $dataObject->connect();
+        $items = $dataObject->getItems('toys');
+        $dataObject->close();
 
         //change all items retrieved into toys
         $i = 0;
