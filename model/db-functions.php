@@ -125,7 +125,7 @@ class DataObject
         $statement = $dbh->prepare($sql);
 
         //3. Bind parameters
-        $statement->bindParam(':table', $table, PDO::PARAM_STR);
+        //$statement->bindParam(':table', $table, PDO::PARAM_STR);
 
         //4.Execute statement
         $statement->execute();
@@ -135,6 +135,25 @@ class DataObject
         //print_r($result);
 
         return $result;
+    }
+
+    function deleteItem($table, $id)
+    {
+        //gives access to the variable in index
+        global $dbh;
+
+        //Define the query
+        $sql = "DELETE * FROM " .$table. "WHERE id = :id";
+
+        //Prepare the statement
+        $statement = $dbh->prepare($sql);
+
+        // Bind parameters
+        $statement->bindParam(':id', $id, PDO::PARAM_STR);
+
+        //4.Execute statement
+        $statement->execute();
+        
     }
 
 }
