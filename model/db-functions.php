@@ -9,6 +9,8 @@
 require ("getConfig.php");
 class DataObject
 {
+    private $dbh;
+
     function connect()
     {
         try {
