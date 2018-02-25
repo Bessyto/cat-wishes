@@ -1,5 +1,9 @@
 <?php
+
 $basicObjectType = 'Toy';
+
+//$item= $params['item'];
+//$f3->set('item', $params['item']);
 $f3->set('basicObjectType', 'Toy');
 
 $table = 'toys';

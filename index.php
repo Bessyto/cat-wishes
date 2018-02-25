@@ -25,7 +25,10 @@ $f3->route('GET /', function () {
 );
 
 $f3->route('GET|POST /recommend', function ($f3, $params) {
+
+
     require('recommendBuilder.php');
+
 }
 );
 
