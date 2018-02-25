@@ -6,130 +6,135 @@
  * Time: 1:56 PM
  */
 
-    require("getConfig.php");
-
-
-    function connect()
+require ("getConfig.php");
+class DataObject
 {
-    try
+    function connect()
     {
-        $dbh = new PDO(DB_DSN, DB_USERNAME, DB_PASSWORD);
+        try {
+            $dbh = new PDO(DB_DSN, DB_USERNAME, DB_PASSWORD);
 //        echo "<p>Connected to database!</p>";
-        return $dbh;
+            return $dbh;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
     }
-    catch (PDOException $e)
+
+    function disconnect($dbh)
     {
-        echo $e->getMessage();
+        $dbh = "";
     }
-}
+    
+    function updateRecommendation($table, $id, $recommendation)
+    {
+        //gives access to the variable in index
+        global $dbh;
 
-function updateRecommendation($table, $id, $recommendation){
-    //gives access to the variable in index
-    global  $dbh;
-
-    //1. Define the query
+        //1. Define the query
 //    $sql = "UPDATE :table SET recommendation = :recommendation WHERE id = :id";
-    $sql = "UPDATE ". $table . " SET recommendation = :recommendation WHERE id = :id";
+        $sql = "UPDATE " . $table . " SET recommendation = :recommendation WHERE id = :id";
 
-    //2. Prepare the statement
-    $statement = $dbh->prepare($sql);
+        //2. Prepare the statement
+        $statement = $dbh->prepare($sql);
 
-    //3. Bind parameters
-    $idNum = intval($id);
-    $recNum = intval($recommendation);
+        //3. Bind parameters
+        $idNum = intval($id);
+        $recNum = intval($recommendation);
 //    $statement->bindValue(':table',$table, PDO::PARAM_STR );
-    $statement->bindParam(':id', $idNum, PDO::PARAM_INT );
-    $statement->bindParam(':recommendation', $recNum, PDO::PARAM_INT );
+        $statement->bindParam(':id', $idNum, PDO::PARAM_INT);
+        $statement->bindParam(':recommendation', $recNum, PDO::PARAM_INT);
 
-    echo "$table $idNum $recNum";
+        echo "$table $idNum $recNum";
 
-    //4.Execute statement
-    $statement->execute();
+        //4.Execute statement
+        $statement->execute();
 
-    //5. Return the results
+        //5. Return the results
 
-    return;
+        return;
 
-}
+    }
 
-function addItem($table, $name, $description, $recommendation, $image){
-    //gives access to the variable in index
-    global  $dbh;
+    function addItem($table, $name, $description, $recommendation, $image)
+    {
+        //gives access to the variable in index
+        global $dbh;
 
-    //1. Define the query
-    $sql = "INSERT INTO toys";
-    $sql = $sql." (name, description,";
-    $sql = $sql." recommendation, image) ";
+        //1. Define the query
+        $sql = "INSERT INTO toys";
+        $sql = $sql . " (name, description,";
+        $sql = $sql . " recommendation, image) ";
 
 //    $sql = $sql."VALUES ( 'Catnip Sock', 'A baby sock filled with catnip', ";
 //    $sql = $sql." 1 , '')";
 //    echo $sql;
-    $sql = $sql."VALUES ( :name, :description, ";
-    $sql = $sql.":recommendation, :image)";
+        $sql = $sql . "VALUES ( :name, :description, ";
+        $sql = $sql . ":recommendation, :image)";
 
-    //2. Prepare the statement
-    $statement = $dbh->prepare($sql);
+        //2. Prepare the statement
+        $statement = $dbh->prepare($sql);
 
-    //3. Bind parameters
-    $statement->bindParam(':name',$name, PDO::PARAM_STR );
-    $statement->bindParam(':description',$description, PDO::PARAM_STR );
-    $statement->bindParam(':recommendation',$recommendation, PDO::PARAM_INT );
-    $statement->bindParam(':image',$image, PDO::PARAM_STR );
+        //3. Bind parameters
+        $statement->bindParam(':name', $name, PDO::PARAM_STR);
+        $statement->bindParam(':description', $description, PDO::PARAM_STR);
+        $statement->bindParam(':recommendation', $recommendation, PDO::PARAM_INT);
+        $statement->bindParam(':image', $image, PDO::PARAM_STR);
 
-    //4.Execute statement
-    $statement->execute();
+        //4.Execute statement
+        $statement->execute();
 
-    //5. Return the results
-    return;
+        //5. Return the results
+        return;
 
-}
+    }
 
 //Get One Toy (a single row) from Database
-function getToy($id)
-{
-    //gives access to the variable in index
-    global  $dbh;
+    function getToy($id)
+    {
+        //gives access to the variable in index
+        global $dbh;
 
-    //1. Define the query
-    $sql = "SELECT id, name, description, recommendation, image FROM toys WHERE id = :id";
+        //1. Define the query
+        $sql = "SELECT id, name, description, recommendation, image FROM toys WHERE id = :id";
 
-    //2. Prepare the statement
-    $statement = $dbh->prepare($sql);
+        //2. Prepare the statement
+        $statement = $dbh->prepare($sql);
 
-    //3. Bind parameters
-    $statement->bindParam(':id',$id, PDO::PARAM_STR );
+        //3. Bind parameters
+        $statement->bindParam(':id', $id, PDO::PARAM_STR);
 
-    //4.Execute statement
-    $statement->execute();
+        //4.Execute statement
+        $statement->execute();
 
-    //5. Return the results
-    $result = $statement->fetch();
+        //5. Return the results
+        $result = $statement->fetch();
 
-    return $result;
-}
+        return $result;
+    }
 
 //Get Toys from Database
-function getItems($table)
-{
-    //gives access to the variable in index
-    global  $dbh;
+    function getItems($table)
+    {
+        //gives access to the variable in index
+        global $dbh;
 
-    //1. Define the query
-    $sql = "SELECT * FROM ".$table;
+        //1. Define the query
+        $sql = "SELECT * FROM " . $table;
 
-    //2. Prepare the statement
-    $statement = $dbh->prepare($sql);
+        //2. Prepare the statement
+        $statement = $dbh->prepare($sql);
 
-    //3. Bind parameters
-    $statement->bindParam(':table',$table, PDO::PARAM_STR );
+        //3. Bind parameters
+        $statement->bindParam(':table', $table, PDO::PARAM_STR);
 
-    //4.Execute statement
-    $statement->execute();
+        //4.Execute statement
+        $statement->execute();
 
-    //5. Return the results
-    $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-    //print_r($result);
+        //5. Return the results
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+        //print_r($result);
 
-    return $result;
+        return $result;
+    }
+
 }
-
