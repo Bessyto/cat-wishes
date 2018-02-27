@@ -4,7 +4,7 @@
 
     <h1 class="row h2 text-center">Click any of the following {{ @basicObjectType}}s that your cat likes:</h1>
 
-    <form method="post" action="#" class="row w-100 py-3">
+    <form method="post" action="./{{@item}}" class="row w-100 py-3">
         <repeat group="{{@Toys}}" key="{{@key}}" value="{{@toy}}">
             <div class="col-md-3 py-3">
                 <input type="checkbox" name="recommends[]" value="{{@toy->getName()}}">

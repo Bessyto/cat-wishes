@@ -18,7 +18,7 @@
  * @copyright 2017
  *
  */
-class BasicObject extends DataObject
+class BasicObject
 {
     protected $id;
     protected $name;

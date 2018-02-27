@@ -7,9 +7,7 @@
  */
 
 require ("getConfig.php");
-class DataObject
-{
-    protected $dbh;
+
 
     function connect()
     {
@@ -22,10 +20,10 @@ class DataObject
         }
     }
 
-    function disconnect($dbh)
-    {
-        $dbh = "";
-    }
+//    function disconnect($dbh)
+//    {
+//        $dbh = "";
+//    }
     
     function updateRecommendation($table, $id, $recommendation)
     {
@@ -159,4 +157,4 @@ class DataObject
         
     }
 
-}
+//}
