@@ -1,6 +1,6 @@
 <?php
 
-class Toy extends BasicObject implements iViewable
+class Toys extends BasicObject implements iViewable
 {
     private $_image;
 

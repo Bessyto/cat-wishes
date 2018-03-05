@@ -1,6 +1,6 @@
 <?php
 
-class Vets extends BasicObject implements iViewable
+class Vets extends BasicObject
 {
     private $_address;
     private $_link;
@@ -15,9 +15,9 @@ class Vets extends BasicObject implements iViewable
      * @param $link
      * @param $phone
      */
-    public function __construct($id, $name = "Generic Vet", $recommendations = 0, $address, $link, $phone)
+    public function __construct($id, $name = "Generic Vet", $recommendations = 0, $address = "", $link = "", $phone = "")
     {
-        Parent::__construct($id, $name, $recommendations);
+        Parent::__construct($id, $name, $address, $recommendations);
         $this->_address = $address;
         $this->_link = $link;
         $this->_phone = $phone;

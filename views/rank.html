@@ -2,10 +2,10 @@
 
 <div class="mx-3 my-3 py-3 px-4 border border-light">
 
-    <h1 class="row h2 text-center">Click any of the following {{ @basicObjectType}}s that your cat likes:</h1>
+    <h1 class="row h2 text-center">Which {{ @basicObjectType}} does your cat recommend?</h1>
 
     <form method="post" action="./{{@item}}" class="row w-100 py-3">
-        <repeat group="{{@Toys}}" key="{{@key}}" value="{{@toy}}">
+        <repeat group="{{@catObjects}}" key="{{@key}}" value="{{@toy}}">
             <div class="col-md-3 py-3">
                 <input type="checkbox" name="recommends[]" value="{{@toy->getName()}}">
                 <b>{{@toy->getName()}}</b> ( <b>{{@toy->getRecommendations()}}</b> )</input>

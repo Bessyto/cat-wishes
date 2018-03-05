@@ -55,21 +55,25 @@ require ("getConfig.php");
 
     }
 
-    function addItem($table, $name, $description, $recommendation, $image)
+    function addItem($table, $name, $description, $recommendation =1, $image = "")
     {
         //gives access to the variable in index
         global $dbh;
 
         //1. Define the query
-        $sql = "INSERT INTO toys";
+        $sql = "INSERT INTO ".$table;
         $sql = $sql . " (name, description,";
-        $sql = $sql . " recommendation, image) ";
+        $sql = $sql . " recommendation";
+//        if(strlen( $image) != 0) $sql = $sql . ", image";
+        $sql = $sql.") ";
 
 //    $sql = $sql."VALUES ( 'Catnip Sock', 'A baby sock filled with catnip', ";
 //    $sql = $sql." 1 , '')";
 //    echo $sql;
         $sql = $sql . "VALUES ( :name, :description, ";
-        $sql = $sql . ":recommendation, :image)";
+        $sql = $sql . ":recommendation";
+//        if(strlen( $image) != 0) $sql = $sql . ", :image";
+        $sql = $sql.")";
 
         //2. Prepare the statement
         $statement = $dbh->prepare($sql);
@@ -78,7 +82,7 @@ require ("getConfig.php");
         $statement->bindParam(':name', $name, PDO::PARAM_STR);
         $statement->bindParam(':description', $description, PDO::PARAM_STR);
         $statement->bindParam(':recommendation', $recommendation, PDO::PARAM_INT);
-        $statement->bindParam(':image', $image, PDO::PARAM_STR);
+//        if(strlen( $image) != 0) $statement->bindParam(':image', $image, PDO::PARAM_STR);
 
         //4.Execute statement
         $statement->execute();
@@ -89,13 +93,13 @@ require ("getConfig.php");
     }
 
 //Get One Toy (a single row) from Database
-    function getToy($id)
+    function getToy($table, $id)
     {
         //gives access to the variable in index
         global $dbh;
 
         //1. Define the query
-        $sql = "SELECT id, name, description, recommendation, image FROM toys WHERE id = :id";
+        $sql = "SELECT id, name, description, recommendation, image FROM ". $table ." WHERE id = :id";
 
         //2. Prepare the statement
         $statement = $dbh->prepare($sql);
@@ -119,8 +123,8 @@ require ("getConfig.php");
         global $dbh;
 
         //1. Define the query
-//        $sql = "SELECT * FROM " . $table;
-        $sql = "SELECT * FROM toys";
+        $sql = "SELECT * FROM " . $table;
+//        $sql = "SELECT * FROM toys";
 
         //2. Prepare the statement
         $statement = $dbh->prepare($sql);

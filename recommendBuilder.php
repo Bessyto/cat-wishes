@@ -1,21 +1,13 @@
 <?php
 
-$basicObjectType = 'Toy';
+$basicObjectType = $params['item'];
 
 $routeItem= $params['item'];
-$f3->set('item', $params['item']);
-$f3->set('basicObjectType', 'Toy');
+$f3->set('item', $basicObjectType);
+$f3->set('basicObjectType', ucfirst($basicObjectType));
 
-$table = 'toys';
-//create default
-//$array = new ToyArray;
-//$itemsArray = $array->getToys();
-//
-////create special cases
-//if(strcmp(@basicObjectType, 'Toy') == 0) {
-//    $array = new ToyArray;
-//    $itemsArray = $array->getToys();
-//}
+$table = $basicObjectType;
+
 $itemsArray = getItems($table);
 $i = 0;
 
@@ -31,31 +23,30 @@ foreach ($itemsArray as $item) {
     $image = $item['image'];
 
     $itemObj = null;
-    if (strcmp($basicObjectType, 'Toy') == 0) {
-        $itemObj = new Toy($id, $name, $description, $recommendations, $image);
+    if (strcmp($basicObjectType, 'toys') == 0) {
+        $itemObj = new Toys($id, $name, $description, $recommendations, $image);
     }
-//        $itemObj = new Toy($id, $name, $description, $recommendations, $image);
-    $toys[$i] = $itemObj;
+    if (strcmp($basicObjectType, 'vets') == 0) {
+        $itemObj = new Vets($id, $name , $recommendations, $description, "", "");
+    }
+    $catObjects[$i] = $itemObj;
     $i++;
 }
-//echo '<p style="color:red;"><pre style="color:white;">';
-//var_dump($toys);
-//echo '</pre></p>';
-if (!is_null($toys)) {
-    $arrayName = get_class($toys[0]) . 's';
-    $f3->set($arrayName, $toys);
+echo '<p style="color:red;"><pre style="color:green;">';
+var_dump($catObjects);
+echo '</pre></p>';
+if (!is_null($catObjects)) {
+    $f3->set('catObjects', $catObjects);
 }
 
 if (isset($_POST['submit'])) {
 
     if (isset($_POST['recommends'])) {
         $recommendItems = $_POST['recommends'];
-//    echo '<p style="color:white;"><pre style="color:white;">';
-//    var_dump($recommendItems);
-//    echo '</pre></p>';
-        foreach ($toys as $item) {
+
+        foreach ($catObjects as $item) {
             if (in_array($item->getName(), $recommendItems)) {
-                $table = strtolower($arrayName);
+//                $table = strtolower($arrayName);
                 $id = $item->getId();
                 $recommendation = $item->getRecommendations() + 1;
                 updateRecommendation($table, $id, $recommendation);
@@ -65,15 +56,17 @@ if (isset($_POST['submit'])) {
     $member = true;
     if ($member && !empty($_POST['itemName'])) {
 
-        echo '<p style="color:white;"><pre style="color:white;">';
-        var_dump($_POST);
-        echo '</pre></p>';
+//        echo '<p style="color:white;"><pre style="color:white;">';
+//        var_dump($_POST);
+//        echo '</pre></p>';
         $name = (empty($_POST['itemName'])) ? 'Something Went Wrong' : $_POST['itemName'];
         $description = (empty($_POST['description'])) ? '' : $_POST['description'];
         $recommendations = 1;
         $image = (empty($_POST['image'])) ? '' : $_POST['image'];
-        $table = 'Toy';
-        if ($basicObjectType == 'Toy') $table = 'toys';
+
+        //sets a default for them to display
+//        $table = 'toys';
+        $table = $basicObjectType;
         addItem($table, $name, $description, $recommendations, $image);
     }
 
