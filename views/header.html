@@ -38,15 +38,12 @@
         </a>
         <ul class="list-inline">
             <li class="list-inline-item"><div class="member"></div></li>
-            <li class="list-inline-item"><button id= "login" class="btn btn-warning" href="./">Login</button></li>
-            <li class="list-inline-item"><button id="register" class="btn btn-warning" href="./">Register</button></li>
-
+            <li class="list-inline-item"><button id= "login" type="submit" name ="login1" class="btn btn-warning" href="./">Login</button></li>
+            <li class="list-inline-item"><button id="register" type="submit" name="register" class="btn btn-warning" href="./">Register</button></li>
 
         </ul>
     </nav>
 </header>
-
-
 
 <script>
 
@@ -56,8 +53,6 @@
     user = jQuery('<li class="list-inline-item"><input class="form-control form-control-sm" type="text" id="username" placeholder="username"></li>');
     pass = jQuery('<li class="list-inline-item"><input class="form-control form-control-sm" type="text" id="password" placeholder="password"></li>');
     submit = jQuery ('<li class="list-inline-item"><button id="submit" type="submit" name="login" class="btn btn-warning" href="./">Submit</button></li>)
-
-
 
     $('button').click(function() {
             $('#login').hide("slow");
