@@ -13,6 +13,9 @@
     <!-- bootstrap css -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
 
+    <!--JQuery link-->
+    <script src="http://code.jquery.com/jquery.js"></script>
+
     <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -33,5 +36,36 @@
         <a class="navbar-brand" href="#">
             <h5>Cat Wishes</h5>
         </a>
+        <ul class="list-inline">
+            <li class="list-inline-item"><div class="member"></div></li>
+            <li class="list-inline-item"><button id= "login" class="btn btn-warning" href="./">Login</button></li>
+            <li class="list-inline-item"><button id="register" class="btn btn-warning" href="./">Register</button></li>
+
+
+        </ul>
     </nav>
 </header>
+
+
+
+<script>
+
+    formBegin = jQuery('<form action="./" method="POST">');
+    formEnd = jQuery('</form>');
+
+    user = jQuery('<li class="list-inline-item"><input class="form-control form-control-sm" type="text" id="username" placeholder="username"></li>');
+    pass = jQuery('<li class="list-inline-item"><input class="form-control form-control-sm" type="text" id="password" placeholder="password"></li>');
+    submit = jQuery ('<li class="list-inline-item"><button id="submit" type="submit" name="login" class="btn btn-warning" href="./">Submit</button></li>)
+
+
+
+    $('button').click(function() {
+            $('#login').hide("slow");
+            $('#register').hide("slow");
+            $('.member').append(user);
+            $('.member').append(pass);
+
+        }
+    );
+
+</script>
