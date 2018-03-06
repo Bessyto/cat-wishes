@@ -12,12 +12,13 @@ $f3->set("DEBUG", 3);
 
 //Connect to the database
 $dbh = connect();
+require('userLogin.php');
 
 $f3->set("Carousel", array("Toys" => "images/carouselToys.jpg", "Food" => "images/carouselFood.jpg",
     "Furniture" => "images/carouselFurniture.jpg", "Vets" => "images/carouselVet.jpg"));
 
 
-$f3->route('GET /', function () {
+$f3->route('GET|POST /', function () {
     $template = new Template;
     echo $template->render
     ('views/home.html');

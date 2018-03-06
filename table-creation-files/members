@@ -3,21 +3,15 @@
     CREATE TABLE IF NOT EXISTS `cat_members` (
         'username' varchar(10) NOT NULL PRIMARY KEY,
         'password' varchar(40) NOT NULL,
-        `last` varchar(30) NOT NULL,
-        `first` varchar(30) NOT NULL,
-        `birthdate` date NOT NULL,
-        `email` double NOT NULL,
-        `numcats` int(3) DEFAULT NULL,
-        `bio` varchar(200) NOT NULL,
-        `access` TINYINT DEFAULT 0)
+        `access` TINYINT DEFAULT (0)
         ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --- Default Users ---
 
-    INSERT INTO 'cat_members' ('username','password','last', 'first', 'birthdate', 'email', 'numcats', 'bio', 'access')
+    INSERT INTO 'cat_members' ('username','password','access')
         VALUES
-        ('tinao',sha1('changeNow'),'O', 'Tina', '1990-01-01','to@mail.greenriver.com','9','The instructor','2'),
-        ('melf',sha1('changeNow'),'F', 'Melanie', '1990-01-01','mf@mail.greenriver.com','0','Allergic to cats','2'),
-        ('best',sha1('changeNow'),'T', 'Bessy', '1990-01-01','bt@mail.greenriver.com','1','The creative genius','2'),
-        ('catlover',sha1('changeNow'),'Lover', 'RandomCat', '1980-01-01','rcl@mail.greenriver.com','19','Just love cats','0');
+        ('tinao',sha1('changeNow'),'2'),
+        ('melf',sha1('changeNow'),'2'),
+        ('best',sha1('changeNow'),'2'),
+        ('catlover',sha1('changeNow'),'0');
 

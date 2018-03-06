@@ -161,4 +161,36 @@ require ("getConfig.php");
         
     }
 
+    function checkMember($table, $username, $password)
+    {
+        //gives access to the variable in index
+        global $dbh;
+
+        //1. Define the query
+        $sql = "SELECT * FROM " . $table. " WHERE username =:username AND password =SHA1(:password)";
+
+        //2. Prepare the statement
+        $statement = $dbh->prepare($sql);
+
+        //3. Bind parameters
+        $statement->bindParam(':username', $username, PDO::PARAM_STR);
+        $statement->bindParam(':password', $password, PDO::PARAM_STR);
+
+        //4.Execute statement
+        $statement->execute();
+
+        //5. Return the results
+        $result = $statement->fetch();
+
+       // return $result;
+
+        if(empty($result))
+        {
+           return false;
+        }
+        else{
+            return true;
+        }
+    }
+
 //}

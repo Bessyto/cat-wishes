@@ -6,6 +6,6 @@
  * Time: 1:56 PM
  */
 
-require("/home/mfeltong/config_files/config.php");
-//require("/home/btorresm/config.php");
+//require("/home/mfeltong/config_files/config.php");
+require("/home/btorresm/config.php");
 
