@@ -1,13 +1,11 @@
 body
 {
     background-image: url("../images/wallpaper.jpg");
-   background-color: darksalmon;
-
+    background-color: darksalmon;
 
     background-size: 100%;
 
     color: white;
-
 }
 
 #header{
@@ -17,4 +15,8 @@ body
 
 #firstRow{
     margin-bottom: 30px;
+}
+
+.carousel-item .img-fluid {
+    width:80%;
 }
