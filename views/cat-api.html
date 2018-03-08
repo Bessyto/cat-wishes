@@ -1,3 +1,11 @@
+<!--API Key
+7dcf425006a4a9342ee8d6975483e187
+
+API Secret
+346a8d4b2ff7ef73076dbc5ebec3dbc6
+-->
+
+
 <include href="views/header.html"/>
 
 <h1 class="text-danger text-center">Halo 5 Missions</h1><hr>
@@ -8,6 +16,11 @@
         var params = {
 // Request parameters
         };
+
+        $.getJSON('http://api.petfinder.com/pet.find?format=json&key=7dcf425006a4a9342ee8d6975483e187&animal=cat&location=98466&callback=?')
+            .done(function(petApiData) { alert(petApiData.petfinder.pets.pet[0].description.$t); })
+            .error(function(err) { alert('Error retrieving data!');
+            });
 
         $.ajax({
             url: "https://www.haloapi.com/metadata/h5/metadata/campaign-missions?" + $.param(params),
