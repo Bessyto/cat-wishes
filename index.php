@@ -45,13 +45,12 @@ $f3->route('GET|POST /recommend/@item', function ($f3, $params) {
 );
 
 
-$f3->route('GET /item', function () {
+$f3->route('GET /search', function () {
     $template = new Template;
     echo $template->render
-    ('views/newItem.html');
+    ('views/cat-api.html');
 }
 );
-
 
 $f3->run();
 ?>

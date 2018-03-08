@@ -1,0 +1,42 @@
+<include href="views/header.html"/>
+
+<h1 class="text-danger text-center">Halo 5 Missions</h1><hr>
+<div id="name"></div>
+
+<script type="text/javascript">
+    $(function() {
+        var params = {
+// Request parameters
+        };
+
+        $.ajax({
+            url: "https://www.haloapi.com/metadata/h5/metadata/campaign-missions?" + $.param(params),
+            beforeSend: function(xhrObj){
+// Request headers
+                xhrObj.setRequestHeader("Accept-Language","en");
+                xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key","9f237e94d23844808f5683e6035a349c");
+            },
+            type: "GET",
+// Request body
+            data: "{body}",
+        })
+            .done(function(data) {
+                $.each(data, function (index, mission) {
+                    $("#name").append("<h1>"+ mission.name + "</h1>");
+                    $("#name").append("<h3>Mission Number: "+ mission.missionNumber +
+                        "&emsp; Team Type: "+ mission.type + "</h3>");
+                    $("#name").append("<p>" + mission.description + "</p>");
+                    $("#name").append('<img src="'+ mission.imageUrl +'" width="500"><hr>' );
+                });
+            })
+            .fail(function() {
+                alert("error");
+            });
+    });
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+</body>
+</html>
