@@ -9,12 +9,16 @@ body
 }
 
 #header{
-    margin-top: 30px;
-    margin-bottom: 30px;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+#logo{
+    margin: 0;
 }
 
 #firstRow{
-    margin-bottom: 30px;
+    margin-bottom: 1em;
 }
 
 .carousel-item .img-fluid {
