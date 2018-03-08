@@ -29,6 +29,14 @@ foreach ($itemsArray as $item) {
     if (strcmp($basicObjectType, 'vets') == 0) {
         $itemObj = new Vets($id, $name , $recommendations, $description, "", "");
     }
+    if (strcmp($basicObjectType, 'food') == 0) {
+        $itemObj = new Food($id, $name , $recommendations, $description, "", "");
+    }
+    if (strcmp($basicObjectType, 'furniture') == 0) {
+        $itemObj = new Furniture($id, $name , $recommendations, $description, "", "");
+    }
+
+
     $catObjects[$i] = $itemObj;
     $i++;
 }
