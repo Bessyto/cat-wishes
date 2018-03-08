@@ -9,17 +9,17 @@
             <div class="col-md-3 py-3">
                 <input type="checkbox" name="recommends[]" value="{{@toy->getName()}}">
                 <b>{{@toy->getName()}}</b> ( <b>{{@toy->getRecommendations()}}</b> )</input>
-                <check if="true">
+                <check if="{{@SESSION['username']}}">
                     <input class="btn btn-danger btn-block btn-sm mx-3 my-3"
                             type="submit" name="submit" value="Delete {{@toy->getName()}}">
                     </input>
                 </check>
             </div>
         </repeat>
-        <check if="true">
+        <check if="{{@SESSION['username']}}">
             <div class="col-md-3 py-3">
                 <input type="checkbox" name="recommends[]" value="new" ></input>
-                <input type="text" name="itemName" placeholder="New Toy Name"></input>
+                <input type="text" name="itemName" placeholder="New {{@item}}"></input>
 
                 <textarea name="description" placeholder="Description"></textarea>
 

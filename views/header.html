@@ -32,11 +32,11 @@
 <header>
     <!-- Just an image -->
     <nav class="navbar navbar-light bg-faded bg-info text-white">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="{{@BASE}}">
             <h5>Cat Wishes</h5>
         </a>
         <ul class="list-inline">
-            <li class="list-inline-item"><form action="./" method="post"><div class="member"></div></form></li>
+            <li class="list-inline-item"><form action="./{{@item}}" method="post"><div class="member"></div></form></li>
 
             <check if="{{@SESSION['username']}}">
                 <true><p>Welcome, {{@SESSION['username']}} !</p>
