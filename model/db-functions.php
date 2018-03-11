@@ -64,7 +64,7 @@ require ("getConfig.php");
         $sql = "INSERT INTO ".$table;
         $sql = $sql . " (name, description,";
         $sql = $sql . " recommendation";
-//        if(strlen( $image) != 0) $sql = $sql . ", image";
+        if(strlen( $image) != 0) $sql = $sql . ", image";
         $sql = $sql.") ";
 
 //    $sql = $sql."VALUES ( 'Catnip Sock', 'A baby sock filled with catnip', ";
@@ -72,7 +72,7 @@ require ("getConfig.php");
 //    echo $sql;
         $sql = $sql . "VALUES ( :name, :description, ";
         $sql = $sql . ":recommendation";
-//        if(strlen( $image) != 0) $sql = $sql . ", :image";
+        if(strlen( $image) != 0) $sql = $sql . ", :image";
         $sql = $sql.")";
 
         //2. Prepare the statement
@@ -82,7 +82,7 @@ require ("getConfig.php");
         $statement->bindParam(':name', $name, PDO::PARAM_STR);
         $statement->bindParam(':description', $description, PDO::PARAM_STR);
         $statement->bindParam(':recommendation', $recommendation, PDO::PARAM_INT);
-//        if(strlen( $image) != 0) $statement->bindParam(':image', $image, PDO::PARAM_STR);
+        if(strlen( $image) != 0) $statement->bindParam(':image', $image, PDO::PARAM_STR);
 
         //4.Execute statement
         $statement->execute();

@@ -4,11 +4,12 @@
 
     <h1 class="row h2 text-center">Which {{ @basicObjectType}} does your cat recommend?</h1>
 
-    <form method="post" action="./{{@item}}" class="row w-100 py-3">
+    <form method="post" action="./{{@item}}" class="row w-100 py-3" enctype="multipart/form-data">
         <repeat group="{{@catObjects}}" key="{{@key}}" value="{{@toy}}">
             <div class="col-md-3 py-3">
                 <input type="checkbox" name="recommends[]" value="{{@toy->getName()}}">
                 <b>{{@toy->getName()}}</b> ( <b>{{@toy->getRecommendations()}}</b> )</input>
+                <img src="http://mfelton.greenriverdev.com/328/cat-wishes/{{@toy->getImage()}}">
                 <check if="{{@SESSION['username']}}">
                     <input class="btn btn-danger btn-block btn-sm mx-3 my-3"
                             type="submit" name="submit" value="Delete {{@toy->getName()}}">
@@ -22,6 +23,9 @@
                 <input type="text" name="itemName" placeholder="New {{@item}}"></input>
 
                 <textarea name="description" placeholder="Description"></textarea>
+
+                <label>Select image to upload:</label>
+                    <input type="file" name="fileToUpload" id="fileToUpload">
 
             </div>
         </check>
@@ -37,5 +41,19 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.bundle.min.js"
         integrity="sha384-VspmFJ2uqRrKr3en+IG0cIq1Cl/v/PHneDw6SQZYgrcr8ZZmZoQ3zhuGfMnSR/F2"
         crossorigin="anonymous"></script>
+<script>
+    // $('#uploadImage').click(function(){
+    //     var file = $('#fileToUpload').val();
+    //     // $('#imageUploadResult').html(fileToUpload+"Got into function");
+    //     // $.post(
+    //     //     "{{@BASE}}/model/upload.php",
+    //     //     {fileToUpload: file},
+    //     //     function(result){
+    //     //         $('#imageUploadResult').html(result);
+    //     //         alert('in result image')
+    //     //     }
+    //     // )
+    // })
+</script>
 </body>
 </html>

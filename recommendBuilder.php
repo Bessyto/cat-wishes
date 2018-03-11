@@ -40,9 +40,9 @@ foreach ($itemsArray as $item) {
     $catObjects[$i] = $itemObj;
     $i++;
 }
-echo '<p style="color:red;"><pre style="color:green;">';
-var_dump($catObjects);
-echo '</pre></p>';
+//echo '<p style="color:red;"><pre style="color:green;">';
+//var_dump($catObjects);
+//echo '</pre></p>';
 if (!is_null($catObjects)) {
     $f3->set('catObjects', $catObjects);
 }
@@ -70,7 +70,10 @@ if (isset($_POST['submit'])) {
         $name = (empty($_POST['itemName'])) ? 'Something Went Wrong' : $_POST['itemName'];
         $description = (empty($_POST['description'])) ? '' : $_POST['description'];
         $recommendations = 1;
-        $image = (empty($_POST['image'])) ? '' : $_POST['image'];
+        if(isset($_FILES[fileToUpload])) {
+            require("model/upload.php");
+        }
+//        $image = (empty($_POST['image'])) ? '' : $_POST['image'];
 
         //sets a default for them to display
 //        $table = 'toys';
