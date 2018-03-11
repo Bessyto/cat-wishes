@@ -42,7 +42,7 @@
 
         <ul class="list-inline">
             <!--<button class="btn btn-warning navbar-btn" id="adopt" type="submit" name="adopt">Adopt a Cat</button>-->
-            <a href="./search" class="text-warning list-inline-item"> <h4>Adopt a Cat</h4> </a>
+            <a href="{{@BASE}}/search" class="text-warning list-inline-item"> <h4>Adopt a Cat</h4> </a>
             <li class="list-inline-item"><form action="./{{@item}}" method="post"><div class="member"></div></form>
                 <check if="{{@SESSION['username']}}">
                     <true><p>Welcome, {{@SESSION['username']}} !</p>
