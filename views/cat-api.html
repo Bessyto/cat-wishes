@@ -11,23 +11,30 @@ API Secret
 <h1 class="text-danger text-center">Homeless Cats</h1><hr>
 
 
-<label>Search by Zip Code
+<h4 class="text-danger ">Search by Zip Code
     <input type="text" id="searchTerm">
-</label><br>
-<button id="search">Search</button><br>
-<select id="cat-list"></select>
+</h4><br>
+<button class="btn btn-info" id="search">Search</button><br><br>
+<!--<div id="cat-list"></div>-->
 
 
 <div id="name" class="row"></div>
 
-<script type="text/javascript">
-    $(function() {
-        var params = {
-// Request parameters
-        };
+<script>
+    //search button is clicked
+    $("#search").click(function(){
 
-        $.getJSON('http://api.petfinder.com/pet.find?format=json&key=7dcf425006a4a9342ee8d6975483e187&animal=cat&location=98466&output=full&callback=?')
+        //Define the variable the user enter
+        var item = $("#searchTerm").val();
+        $("#name").html("");
+
+        var url = "http://api.petfinder.com/pet.find?format=json&key=7dcf425006a4a9342ee8d6975483e187&animal=cat";
+        url+= "&location=" + item;
+        url+=  "&output=full&callback=?";
+
+        $.getJSON(url)
             .done(function(petApiData) {
+
                 //alert(petApiData.petfinder.pets.pet[0].description.$t);
                 $.each(petApiData.petfinder.pets.pet, function (index, pet) {
                     var output = "<div class='col-md-4 p-4 border rounded'><h3> Name: "+ pet.name.$t + "</h3>";
@@ -41,37 +48,15 @@ API Secret
                     output += "<p> Description: " + pet.description.$t + "</p></div>";
                     $("#name").append(output);
 
-               });
+                });
 
             })
             .error(function(err) { alert('Error retrieving data!');
             });
 
-        $.ajax({
-            url: "https://www.haloapi.com/metadata/h5/metadata/campaign-missions?" + $.param(params),
-            beforeSend: function(xhrObj){
-// Request headers
-                xhrObj.setRequestHeader("Accept-Language","en");
-                xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key","9f237e94d23844808f5683e6035a349c");
-            },
-            type: "GET",
-// Request body
-            data: "{body}",
-        })
-            .done(function(data) {
-                $.each(data, function (index, mission) {
-                    $("#name").append("<h1>"+ mission.name + "</h1>");
-                    $("#name").append("<h3>Mission Number: "+ mission.missionNumber +
-                        "&emsp; Team Type: "+ mission.type + "</h3>");
-                    $("#name").append("<p>" + mission.description + "</p>");
-                    $("#name").append('<img src="'+ mission.imageUrl +'" width="500"><hr>' );
-                });
-            })
-            .fail(function() {
-                alert("error");
-            });
     });
 </script>
+
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
