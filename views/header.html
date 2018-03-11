@@ -32,17 +32,24 @@
 <header>
     <!-- Just an image -->
     <nav class="navbar navbar-light bg-faded bg-info text-white">
-        <a class="navbar-brand" href="{{@BASE}}">
-            <h5>Cat Wishes</h5>
+        <a class="navbar-brand w-20" href="{{@BASE}}">
+            <img class="col-md-5" id="logo" src="{{@BASE}}/images/logo.png" alt="Cat Wishes logo">
+            <!--<h5>Cat Wishes</h5>-->
         </a>
+
+
+
+
         <ul class="list-inline">
+            <!--<button class="btn btn-warning navbar-btn" id="adopt" type="submit" name="adopt">Adopt a Cat</button>-->
+            <a href="./search" class="text-warning list-inline-item"> <h4>Adopt a Cat</h4> </a>
             <li class="list-inline-item"><form action="./{{@item}}" method="post"><div class="member"></div></form>
                 <check if="{{@SESSION['username']}}">
                     <true><p>Welcome, {{@SESSION['username']}} !</p>
                         <form action="./{{@item}}" method="post"><input id="logout" name="logout" value="Logout" type="submit"></form>
                     </true>
                     <false><li class="list-inline-item"><button id= "login" type="submit" name ="login1" class="btn btn-warning" >Login</button></li></false>
-            </check>
+                </check>
 
             </li>
 
@@ -74,3 +81,5 @@
     );
 
 </script>
+
+
