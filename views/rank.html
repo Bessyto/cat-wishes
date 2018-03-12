@@ -1,6 +1,5 @@
 <include href="views/header.html"/>
-
-<div class="mx-3 my-3 py-3 px-4 border border-light">
+<div id="details" class="mx-3 my-3 py-3 px-4 border border-light">
 
     <h1 class="row h2 text-center">Which {{ @basicObjectType}} does your cat recommend?</h1>
 
@@ -8,8 +7,9 @@
         <repeat group="{{@catObjects}}" key="{{@key}}" value="{{@toy}}">
             <div class="col-md-3 py-3">
                 <input type="checkbox" name="recommends[]" value="{{@toy->getName()}}">
-                <b>{{@toy->getName()}}</b> ( <b>{{@toy->getRecommendations()}}</b> )</input>
-                <img src="http://mfelton.greenriverdev.com/328/cat-wishes/{{@toy->getImage()}}">
+                <button id="{{@toy->getId()}}" name="{{@toy->getId()}}" table={{@basicObjectType}} value="{{@toy->getId()}}">
+                    <b>{{@toy->getName()}}</b> ( <b>{{@toy->getRecommendations()}}</b> )
+                </button>
                 <check if="{{@SESSION['username']}}">
                     <input class="btn btn-danger btn-block btn-sm mx-3 my-3"
                             type="submit" name="submit" value="Delete {{@toy->getName()}}">
@@ -42,18 +42,36 @@
         integrity="sha384-VspmFJ2uqRrKr3en+IG0cIq1Cl/v/PHneDw6SQZYgrcr8ZZmZoQ3zhuGfMnSR/F2"
         crossorigin="anonymous"></script>
 <script>
-    // $('#uploadImage').click(function(){
-    //     var file = $('#fileToUpload').val();
-    //     // $('#imageUploadResult').html(fileToUpload+"Got into function");
-    //     // $.post(
-    //     //     "{{@BASE}}/model/upload.php",
-    //     //     {fileToUpload: file},
-    //     //     function(result){
-    //     //         $('#imageUploadResult').html(result);
-    //     //         alert('in result image')
-    //     //     }
-    //     // )
-    // })
+    $('button').click(function(){
+
+        var id = $(this).attr("id");
+        var table = $(this).attr("table");
+        event.preventDefault();
+
+        $.post(
+            "../views/details.php",
+            {id: id, table: table },
+            function(result){
+                $('#details').html(result);
+                // alert('in result image');
+            }
+        );
+        // $(function() {
+        //     var params = {
+        //         id: id,
+        //         table: table
+        //     };
+        // }
+        // $.ajax({
+        //     type: "GET",
+        //     url: "http://mfelton.greenriverdev.com/328/cat-wishes/views/details.php&"+ $.param(params),
+        //     data: "{body}",
+        //     success: function(data) {
+        //         $('#details').html(data);
+        //         alert('in result image')
+        //     }
+        // });
+    });
 </script>
 </body>
 </html>

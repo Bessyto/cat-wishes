@@ -93,14 +93,14 @@ require ("getConfig.php");
     }
 
 //Get One Toy (a single row) from Database
-    function getToy($table, $id)
+    function getItem($table, $id)
     {
         //gives access to the variable in index
         global $dbh;
-
+        $dbh = connect();
         //1. Define the query
-        $sql = "SELECT id, name, description, recommendation, image FROM ". $table ." WHERE id = :id";
-
+        $sql = "SELECT * FROM ". $table ." WHERE id = :id";
+        
         //2. Prepare the statement
         $statement = $dbh->prepare($sql);
 
