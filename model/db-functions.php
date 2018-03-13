@@ -100,7 +100,7 @@ require ("getConfig.php");
         $dbh = connect();
         //1. Define the query
         $sql = "SELECT * FROM ". $table ." WHERE id = :id";
-        
+
         //2. Prepare the statement
         $statement = $dbh->prepare($sql);
 
