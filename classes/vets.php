@@ -1,5 +1,14 @@
 <?php
+/*
+ * This class represents the Vet object that extends from the BasicObject
+ *
+ */
 
+/**
+ * Class Vets represents a vet object
+ * @author Bessy Torres-Miller
+ * @copyright 2017
+ */
 class Vets extends BasicObject
 {
     private $_address;
