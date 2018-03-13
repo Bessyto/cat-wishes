@@ -8,7 +8,8 @@
 
 /**
  * Class Member will create a normal member for the dating site with general information
- *@author Bessy Torres-Miller
+ * @author Bessy Torres-Miller
+ * @copyright 2017
  *
  */
 class Member
@@ -56,6 +57,7 @@ class Member
     }
 
     /**
+     * Password should be at 8 characters
      * @param mixed $password
      */
     public function setPassword($password)
@@ -82,7 +84,4 @@ class Member
     {
         $this->access = $access;
     }
-
-
-
 }

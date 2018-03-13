@@ -1,5 +1,11 @@
 <?php
-
+/**
+ *  This class represents the food object extended from BasicObject
+ * and implements the iViewable class method
+ *
+ * @author Bessy Torres-Miller / Melanie Felton
+ * @copyright 2017
+ */
 class Food extends BasicObject implements iViewable
 {
     private $_image;

@@ -1,5 +1,11 @@
 <?php
-
+/**
+ * Class Furniture represents the furniture object that extends BasicObject class
+ * and implements the iViewable class method
+ *
+ * @author Bessy Torres-Miller
+ * @copyright 2017
+ */
 class Furniture extends BasicObject implements iViewable
 {
     private $_image;

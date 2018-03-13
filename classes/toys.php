@@ -1,4 +1,8 @@
 <?php
+/**
+ * Class Toys represents a toy objects. Extends from BasicObject class and implements
+ * the class IViewable methods
+ */
 
 class Toys extends BasicObject implements iViewable
 {
