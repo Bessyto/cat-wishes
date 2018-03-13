@@ -146,6 +146,7 @@ require ("getConfig.php");
     {
         //gives access to the variable in index
         global $dbh;
+        $dbh = connect();
 
         //Define the query
         $sql = "DELETE * FROM " .$table. "WHERE id = :id";
