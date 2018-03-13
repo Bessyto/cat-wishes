@@ -6,10 +6,10 @@
 //    $results = getItem(strtolower($table), $id);
 
     include("../model/db-object.php");
-
     include("../model/db-item.php");
-    $dbh = new DBItem();
-    $results = $dbh->get(strtolower($table), $id);
+
+    $dbItem = new DBItem();
+    $results = $dbItem->get(strtolower($table), $id);
 
     echo '<div class="row">';
     echo '<div class="col-md-2"></div>';

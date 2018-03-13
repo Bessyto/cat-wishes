@@ -82,7 +82,11 @@ if (isset($_POST['submit'])) {
     }
 
     if(strpos($_POST['submit'],'Delete') === 0){
-        $f3->reroute('/');
+        $id = $_POST['id'];
+
+        $table = strtolower($basicObjectType);
+        deleteItem($table,$id);
+//        $f3->reroute('');
     }
 
     $f3->reroute('/recommend/'.$routeItem);
