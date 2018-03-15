@@ -149,13 +149,16 @@ require ("getConfig.php");
         $dbh = connect();
 
         //Define the query
-        $sql = "DELETE * FROM " .$table. "WHERE id = :id";
+        $sql = "DELETE FROM " .$table. " WHERE id = :id";
+//        $sql = "DELETE FROM ".$table." WHERE id = 31";
+
+        echo $sql;
 
         //Prepare the statement
         $statement = $dbh->prepare($sql);
 
         // Bind parameters
-        $statement->bindParam(':id', $id, PDO::PARAM_STR);
+        $statement->bindParam(':id', $id, PDO::PARAM_INT);
 
         //4.Execute statement
         $statement->execute();

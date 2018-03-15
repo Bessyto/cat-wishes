@@ -6,7 +6,19 @@ $routeItem= $params['item'];
 $f3->set('item', $basicObjectType);
 $f3->set('basicObjectType', ucfirst($basicObjectType));
 
-$table = $basicObjectType;
+$table = strtolower($basicObjectType);
+
+if(isset($_POST['submit']) && (strpos($_POST['submit'],'Delete') === 0)){
+    $idName = preg_replace('/[^\da-z]/i', '',trim(substr($_POST['submit'],7)));
+    echo $idName."<br>";
+    $id = $_POST[$idName];
+
+    $table = strtolower($basicObjectType);
+    echo $id."  ".$table."<br>";
+    deleteItem($table,$id);
+//        $f3->reroute('');
+}
+
 
 $itemsArray = getItems($table);
 $i = 0;
@@ -81,15 +93,16 @@ if (isset($_POST['submit'])) {
         addItem($table, $name, $description, $recommendations, $image);
     }
 
-    if(strpos($_POST['submit'],'Delete') === 0){
-        $id = $_POST['id'];
+//    if(strpos($_POST['submit'],'Delete') === 0){
+//        $id = $_POST['id'];
+//
+//        $table = strtolower($basicObjectType);
+//        echo $id."  ".$table;
+//        deleteItem($table,$id);
+////        $f3->reroute('');
+//    }
 
-        $table = strtolower($basicObjectType);
-        deleteItem($table,$id);
-//        $f3->reroute('');
-    }
-
-    $f3->reroute('/recommend/'.$routeItem);
+//    $f3->reroute('/recommend/'.$routeItem);
 }
 
 $template = new Template;
