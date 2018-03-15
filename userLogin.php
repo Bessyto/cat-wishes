@@ -9,14 +9,14 @@ if (!empty($_POST['username']) && !empty($_POST['password'])) {
     $password = (empty($_POST['password'])) ? '' : $_POST['password'];
     $table = "cat_members";
 
-    if (checkMember($table, $username, $password)) {
+    $access = checkMember($table, $username, $password);
+    $_SESSION['access'] = $access;
+
+    if ($access >= 0) {
         //passing username to session
         $_SESSION['username'] = $username;
     }
-
-
 }
-
 if (isset($_POST['logout'])) {
 //        unset($_SESSION['username']);
 //        $_POST['username'] ='';

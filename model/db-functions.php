@@ -190,10 +190,10 @@ require ("getConfig.php");
 
         if(empty($result))
         {
-           return false;
+           return -1;
         }
         else{
-            return true;
+            return $result['access'];
         }
     }
 
