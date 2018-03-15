@@ -41,7 +41,7 @@
             <a href="{{@BASE}}/search" class="text-warning list-inline-item"> <h4>Adopt a Cat</h4> </a>
             <li class="list-inline-item"><form action="./{{@item}}" method="post"><div class="member"></div></form>
                 <check if="{{@SESSION['username']}}">
-                    <true><p>Welcome, {{@SESSION['username']}} !</p>
+                    <true><p>Welcome, {{@SESSION['username']}} ! your access level is {{@SESSION['access']}}</p>
                         <form action="./{{@item}}" method="post"><input id="logout" name="logout" value="Logout" type="submit"></form>
                     </true>
                     <false><li class="list-inline-item"><button id= "login" type="submit" name ="login1" class="btn btn-warning">Login</button></li></false>
