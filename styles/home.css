@@ -7,8 +7,6 @@ body
 {
     background-image: url("../images/wallpaper.jpg");
     background-color: darksalmon;
-
-
 }
 
 .container{
@@ -19,6 +17,7 @@ body
 #header{
     margin-top: 2em;
     margin-bottom: 2em;
+    color: white;
 }
 
 #logo{
