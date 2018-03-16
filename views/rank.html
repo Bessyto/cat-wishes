@@ -13,7 +13,7 @@
                 <check if="{{@SESSION['username']}}">
                     <input type="hidden" name="{{preg_replace('/[^\da-z]/i', '',@toy->getName())}}" value="{{@toy->getId()}}" />
                     <input class="btn btn-danger btn-block btn-sm mx-3 my-3"
-                            type="submit" name="submit" value="Delete {{@toy->getName()}}">
+                           type="submit" name="submit" value="Delete {{@toy->getName()}}">
                     </input>
                 </check>
             </div>
@@ -26,11 +26,12 @@
                 <textarea name="description" placeholder="Description"></textarea>
 
                 <label>Select image to upload:</label>
-                    <input type="file" name="fileToUpload" id="fileToUpload">
+                <input type="file" name="fileToUpload" id="fileToUpload">
+                <div id="fileValidation"></div>
 
             </div>
         </check>
-        <input class="btn btn-success btn-block btn-lg mx-3 my-3" type="submit" name="submit" value="Recommend">
+        <input class="btn btn-success btn-block btn-lg mx-3 my-3" type="submit" name="submit" id="recommend" value="Recommend">
         </input>
     </form>
 
@@ -43,6 +44,23 @@
         integrity="sha384-VspmFJ2uqRrKr3en+IG0cIq1Cl/v/PHneDw6SQZYgrcr8ZZmZoQ3zhuGfMnSR/F2"
         crossorigin="anonymous"></script>
 <script>
+
+    function imagePrevalidation(imageName)
+    {
+        with(imageName)
+        {
+
+            var ext=imageName.substring(imageName.lastIndexOf('.')+1);
+            ext = ext.toLowerCase();
+            var imageTypes = ["jpg","png","gif", "jpeg"];
+            if(imageTypes.indexOf(ext) < 0) {
+                return false;
+            }
+
+            return true;
+        }
+    }
+
     $('.get-item').click(function(){
 
         var id = $(this).attr("id");
@@ -57,22 +75,43 @@
                 // alert('in result image');
             }
         );
-        // $(function() {
-        //     var params = {
-        //         id: id,
-        //         table: table
-        //     };
-        // }
-        // $.ajax({
-        //     type: "GET",
-        //     url: "http://mfelton.greenriverdev.com/328/cat-wishes/views/details.php&"+ $.param(params),
-        //     data: "{body}",
-        //     success: function(data) {
-        //         $('#details').html(data);
-        //         alert('in result image')
-        //     }
-        // });
     });
+
+    $('recommend').click( function(){
+        preventDefault();
+        alert("Recommend was clicked.");
+    });
+
+    $('#fileToUpload').change(function() {
+
+        alert("Handler for change() called.");
+        var x = document.getElementById("fileToUpload");
+        var txt = "";
+        if ('files' in x) {
+            if (x.files.length == 0) {
+                txt = "Select one or more files.";
+            } else {
+                for (var i = 0; i < x.files.length; i++) {
+                    // txt += "<br><strong>" + (i+1) + ". file</strong><br>";
+                    var file = x.files[i];
+                    if ('name' in file) {
+                        txt += "Name: " + file.name + "<br>";
+                        if(imagePrevalidation(file.name)) {
+                            if ('size' in file && file.size < 500000) {
+                                txt += "size: " + file.size + " bytes <br>";
+                            } else {
+                                txt += "File Too Large - must be less than 0.5 Mb "
+                            }
+                        } else {
+                            txt += "Invalid File Type - must be jpg, png, or gif";
+                        }
+                    }
+                }
+            }
+        }
+        document.getElementById ("fileValidation").innerHTML = txt;
+    });
+
 </script>
 </body>
 </html>
