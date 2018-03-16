@@ -8,12 +8,10 @@
 */
 $image = "";
 $target_dir = "./user_images/";
-echo '<pre style="color:green">';
-var_dump($_FILES);
-echo '</pre>';
+$imageErrorMessages = "";
+
 if ((!empty($_FILES["fileToUpload"]["size"]))) {
     $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-    echo $target_file;
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 // Check if image file is a actual image or fake image
@@ -22,7 +20,7 @@ if ((!empty($_FILES["fileToUpload"]["size"]))) {
         echo "File is an image - " . $check["mime"] . ".";
         $uploadOk = 1;
     } else {
-        echo "File is not an image.";
+        $imageErrorMessages += "File Upload Error: not an image.<br>";
         $uploadOk = 0;
     }
     // Check if file already exists or add a number if a duplicate
@@ -37,18 +35,7 @@ if ((!empty($_FILES["fileToUpload"]["size"]))) {
             $duplicateCount++;
             $tempParts = explode(".", $temp_file);
 
-
-            echo '<pre style="color:blue">';
-            var_dump($tempParts);
-            echo $tempParts[count($tempParts) - 2];
-            echo '</pre>';
-
             $tempParts[count($tempParts) - 2] = $tempParts[count($tempParts) - 2] . $duplicateCount;
-
-            echo '<pre style="color:blue">';
-            var_dump($tempParts);
-            echo $tempParts[count($tempParts) - 2];
-            echo '</pre>';
 
             $temp_file = implode(".",$tempParts);
         }
@@ -57,18 +44,21 @@ if ((!empty($_FILES["fileToUpload"]["size"]))) {
 
     // Check file size
     if ($_FILES["fileToUpload"]["size"] > 500000) {
+        $imageErrorMessages += "File Upload Error: image too large.<br>";
         echo "Sorry, your file is too large.";
         $uploadOk = 0;
     }
     // Allow certain file formats
     if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
         && $imageFileType != "gif") {
+        $imageErrorMessages += "File Upload Error: wrong file type.<br>";
         echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
         $uploadOk = 0;
     }
 //}
 // Check if $uploadOk is set to 0 by an error
     if ($uploadOk == 0) {
+        $_SESSION['imageErrorMessages'] = $imageErrorMessages;
         echo "Sorry, your file was not uploaded.";
 // if everything is ok, try to upload file
     } else {
