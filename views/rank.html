@@ -10,7 +10,7 @@
                 <button class="get-item" id="{{@toy->getId()}}" name="{{@toy->getId()}}" table={{@basicObjectType}} value="{{@toy->getId()}}">
                     <b>{{@toy->getName()}}</b> ( <b>{{@toy->getRecommendations()}}</b> )
                 </button>
-                <check if="{{@SESSION['username']}}">
+                <check if="{{@SESSION['access'] == 2}}">
                     <input type="hidden" name="{{preg_replace('/[^\da-z]/i', '',@toy->getName())}}" value="{{@toy->getId()}}" />
                     <input class="btn btn-danger btn-block btn-sm mx-3 my-3"
                            type="submit" name="submit" value="Delete {{@toy->getName()}}">
