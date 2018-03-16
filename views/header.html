@@ -38,11 +38,20 @@
         </a>
 
         <ul class="list-inline">
+            <!--<div class="list-inline">
+                <audio id="clickSound" class="list-inline">
+                    <source src="./audio/Cat Meowing.mp3">
+                </audio>
+                <a id="adopt" href="{{@BASE}}/search" class="text-warning list-inline-item"> <h4>Adopt a Cat</h4> </a>
+            </div>-->
             <a href="{{@BASE}}/recommend/toys" class="text-danger list-inline-item"> <h4>Toys</h4> </a>
             <a href="{{@BASE}}/recommend/food" class="text-danger list-inline-item"> <h4>Food</h4> </a>
             <a href="{{@BASE}}/recommend/furniture" class="text-danger list-inline-item"> <h4>Furniture</h4> </a>
             <a href="{{@BASE}}/recommend/vets" class="text-danger list-inline-item"> <h4>Vets</h4> </a>
             <a href="{{@BASE}}/search" class="text-warning list-inline-item"> <h4>Adopt a Cat</h4> </a>
+
+
+
             <li class="list-inline-item"><form action="./{{@item}}" method="post"><div class="member"></div></form>
                 <check if="{{@SESSION['username']}}">
                     <true><p>Welcome, {{@SESSION['username']}} ! your access level is {{@SESSION['access']}}</p>
@@ -76,5 +85,17 @@
     );
 
 </script>
+<!--
+
+<script>
+    $( document ).ready(function() {
+        var audio = $("#clickSound");
+           $("#adopt").mouseup(function() {
+            audio.play();
+        });
+    });
+
+</script>
+-->
 
 
