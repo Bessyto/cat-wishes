@@ -7,6 +7,7 @@ body
 {
     background-image: url("../images/wallpaper.jpg");
     background-color: darksalmon;
+    color: white;
 }
 
 .container{
