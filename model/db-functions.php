@@ -117,13 +117,13 @@ require ("getConfig.php");
     }
 
 //Get Toys from Database
-    function getItems($table)
+    function getItems($table,$numReturn)
     {
         //gives access to the variable in index
         global $dbh;
 
         //1. Define the query
-        $sql = "SELECT * FROM " . $table;
+        $sql = "SELECT * FROM " . $table . " ORDER BY recommendation DESC"; // " LIMIT TO 5";
 //        $sql = "SELECT * FROM toys";
 
         //2. Prepare the statement

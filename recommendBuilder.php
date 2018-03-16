@@ -19,8 +19,8 @@ if(isset($_POST['submit']) && (strpos($_POST['submit'],'Delete') === 0)){
 //        $f3->reroute('');
 }
 
-
-$itemsArray = getItems($table);
+//getting 0 items makes not sense, returning 0 all items
+$itemsArray = getItems($table,0);
 $i = 0;
 
 //    echo '<p style="color:green;"><pre style="color:white;">';
@@ -39,13 +39,13 @@ foreach ($itemsArray as $item) {
         $itemObj = new Toys($id, $name, $description, $recommendations, $image);
     }
     if (strcmp($basicObjectType, 'vets') == 0) {
-        $itemObj = new Vets($id, $name , $recommendations, $description, "", "");
+        $itemObj = new Vets($id, $name , $description, $recommendations, "", "");
     }
     if (strcmp($basicObjectType, 'food') == 0) {
-        $itemObj = new Food($id, $name , $recommendations, $description, "", "");
+        $itemObj = new Food($id, $name , $description, $recommendations, "", "");
     }
     if (strcmp($basicObjectType, 'furniture') == 0) {
-        $itemObj = new Furniture($id, $name , $recommendations, $description, "", "");
+        $itemObj = new Furniture($id, $name , $description, $recommendations, "", "");
     }
 
 
