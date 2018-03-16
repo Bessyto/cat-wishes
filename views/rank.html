@@ -47,18 +47,13 @@
 
     function imagePrevalidation(imageName)
     {
-        with(imageName)
-        {
-
             var ext=imageName.substring(imageName.lastIndexOf('.')+1);
             ext = ext.toLowerCase();
             var imageTypes = ["jpg","png","gif", "jpeg"];
             if(imageTypes.indexOf(ext) < 0) {
                 return false;
             }
-
             return true;
-        }
     }
 
     $('.get-item').click(function(){
@@ -77,14 +72,14 @@
         );
     });
 
-    $('recommend').click( function(){
-        preventDefault();
-        alert("Recommend was clicked.");
-    });
+    // $('recommend').click( function(){
+    //     // preventDefault();
+    //     alert("Recommend was clicked.");
+    // });
 
     $('#fileToUpload').change(function() {
 
-        alert("Handler for change() called.");
+        // alert("Handler for change() called.");
         var x = document.getElementById("fileToUpload");
         var txt = "";
         if ('files' in x) {

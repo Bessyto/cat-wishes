@@ -19,13 +19,9 @@ if(isset($_POST['submit']) && (strpos($_POST['submit'],'Delete') === 0)){
 //        $f3->reroute('');
 }
 
-//getting 0 items makes not sense, returning 0 all items
+//getting 0 items makes no sense, so if ask for 0, returns all items
 $itemsArray = getItems($table,0);
 $i = 0;
-
-//    echo '<p style="color:green;"><pre style="color:white;">';
-//    var_dump($itemsArray);
-//    echo '</pre></p>';
 
 foreach ($itemsArray as $item) {
     $id = $item['id'];
@@ -52,9 +48,7 @@ foreach ($itemsArray as $item) {
     $catObjects[$i] = $itemObj;
     $i++;
 }
-//echo '<p style="color:red;"><pre style="color:green;">';
-//var_dump($catObjects);
-//echo '</pre></p>';
+
 if (!is_null($catObjects)) {
     $f3->set('catObjects', $catObjects);
 }
@@ -93,16 +87,8 @@ if (isset($_POST['submit'])) {
         addItem($table, $name, $description, $recommendations, $image);
     }
 
-//    if(strpos($_POST['submit'],'Delete') === 0){
-//        $id = $_POST['id'];
-//
-//        $table = strtolower($basicObjectType);
-//        echo $id."  ".$table;
-//        deleteItem($table,$id);
-////        $f3->reroute('');
-//    }
-
-//    $f3->reroute('/recommend/'.$routeItem);
+    unset($_POST);
+    $f3->reroute('/recommend/'.$routeItem);
 }
 
 $template = new Template;

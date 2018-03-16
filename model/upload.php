@@ -8,11 +8,10 @@
 */
 $image = "";
 $target_dir = "./user_images/";
-echo '<pre style="color:white">';
-var_dump($_POST);
+echo '<pre style="color:green">';
 var_dump($_FILES);
-echo'</pre>';
-if((!empty($_FILES["fileToUpload"]["size"])) ) {
+echo '</pre>';
+if ((!empty($_FILES["fileToUpload"]["size"]))) {
     $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
     echo $target_file;
     $uploadOk = 1;
@@ -26,11 +25,36 @@ if((!empty($_FILES["fileToUpload"]["size"])) ) {
         echo "File is not an image.";
         $uploadOk = 0;
     }
-    // Check if file already exists
+    // Check if file already exists or add a number if a duplicate
+    $duplicateCount = 0;
     if (file_exists($target_file)) {
-        echo "Sorry, file already exists.";
-        $uploadOk = 0;
+        $temp_file = $target_file;
+        while (file_exists($temp_file)) {
+            //strip of last duplicate count attempt by reverting to original
+            $temp_file = $target_file;
+
+            //add new duplicate count attempt
+            $duplicateCount++;
+            $tempParts = explode(".", $temp_file);
+
+
+            echo '<pre style="color:blue">';
+            var_dump($tempParts);
+            echo $tempParts[count($tempParts) - 2];
+            echo '</pre>';
+
+            $tempParts[count($tempParts) - 2] = $tempParts[count($tempParts) - 2] . $duplicateCount;
+
+            echo '<pre style="color:blue">';
+            var_dump($tempParts);
+            echo $tempParts[count($tempParts) - 2];
+            echo '</pre>';
+
+            $temp_file = implode(".",$tempParts);
+        }
+        $target_file = $temp_file;
     }
+
     // Check file size
     if ($_FILES["fileToUpload"]["size"] > 500000) {
         echo "Sorry, your file is too large.";
