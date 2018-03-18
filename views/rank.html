@@ -2,8 +2,8 @@
 <div id="details" class="mx-3 my-3 py-3 px-4 border border-light">
 
     <h1 class="row h2 text-center">Which {{ @basicObjectType}} does your cat recommend?</h1>
-    <check if="{{@SESSION['imageErrorMessages']}}">
-        <h2 class="row text-danger">{{@SESSION['imageErrorMessages']}}</h2>
+    <check if="{{@SESSION['image_messages']}}">
+        <h2 class="row text-danger">{{@SESSION['image_messages']}}</h2>
     </check>
 
     <form method="post" action="./{{@item}}" class="row w-100 py-3" enctype="multipart/form-data">
@@ -26,13 +26,14 @@
         <check if="{{@SESSION['username']}}">
             <div class="col-md-3 py-3">
                 <input type="checkbox" name="recommends[]" value="new"></input>
-                <input type="text" name="itemName" placeholder="New {{@item}}"></input>
+                <input type="text" name="itemName" id="itemName" placeholder="New {{@item}}"></input>
 
-                <textarea name="description" placeholder="Description"></textarea>
-
-                <label>Select image to upload:</label>
-                <input type="file" name="fileToUpload" id="fileToUpload">
-                <div id="fileValidation"></div>
+                <textarea name="description" id="description" placeholder="Description"></textarea>
+                <check if="strcmp(get_class(@toy),'Vets') != 0">
+                    <label>Select image to upload:</label>
+                    <input type="file" name="fileToUpload" id="fileToUpload">
+                    <div id="fileValidation"></div>
+                </check>
 
             </div>
         </check>
@@ -49,69 +50,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.bundle.min.js"
         integrity="sha384-VspmFJ2uqRrKr3en+IG0cIq1Cl/v/PHneDw6SQZYgrcr8ZZmZoQ3zhuGfMnSR/F2"
         crossorigin="anonymous"></script>
-<script>
 
-    function imagePrevalidation(imageName) {
-        var ext = imageName.substring(imageName.lastIndexOf('.') + 1);
-        ext = ext.toLowerCase();
-        var imageTypes = ["jpg", "png", "gif", "jpeg"];
-        if (imageTypes.indexOf(ext) < 0) {
-            return false;
-        }
-        return true;
-    }
-
-    $('.get-item').click(function () {
-
-        var id = $(this).attr("id");
-        var table = $(this).attr("table");
-        event.preventDefault();
-
-        $.post(
-            "../views/details.php",
-            {id: id, table: table},
-            function (result) {
-                $('#details').html(result);
-                // alert('in result image');
-            }
-        );
-    });
-
-    // $('recommend').click( function(){
-    //     // preventDefault();
-    //     alert("Recommend was clicked.");
-    // });
-
-    $('#fileToUpload').change(function () {
-
-        // alert("Handler for change() called.");
-        var x = document.getElementById("fileToUpload");
-        var txt = "";
-        if ('files' in x) {
-            if (x.files.length == 0) {
-                txt = "Select one or more files.";
-            } else {
-                for (var i = 0; i < x.files.length; i++) {
-                    // txt += "<br><strong>" + (i+1) + ". file</strong><br>";
-                    var file = x.files[i];
-                    if ('name' in file) {
-                        txt += "Name: " + file.name + "<br>";
-                        if (imagePrevalidation(file.name)) {
-                            if ('size' in file && file.size < 500000) {
-                                txt += "size: " + file.size + " bytes <br>";
-                            } else {
-                                txt += "File Too Large - must be less than 0.5 Mb "
-                            }
-                        } else {
-                            txt += "Invalid File Type - must be jpg, png, or gif";
-                        }
-                    }
-                }
-            }
-        }
-        document.getElementById("fileValidation").innerHTML = txt;
-    });
-
-</script>
+<script src="../scripts/rank-scripts.js"></script>
 </body>
 </html>

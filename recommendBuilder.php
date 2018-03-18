@@ -70,9 +70,6 @@ if (isset($_POST['submit'])) {
     $member = true;
     if ($member && !empty($_POST['itemName'])) {
 
-//        echo '<p style="color:white;"><pre style="color:white;">';
-//        var_dump($_POST);
-//        echo '</pre></p>';
         $name = (empty($_POST['itemName'])) ? 'Something Went Wrong' : $_POST['itemName'];
         $description = (empty($_POST['description'])) ? '' : $_POST['description'];
         $recommendations = 1;
