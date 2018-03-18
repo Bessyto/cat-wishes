@@ -16,7 +16,7 @@
  */
 class DBItem extends DBObject
 {
-    //Get One Toy (a single row) from Database
+    //Get One item (a single row) from Database
     function get($table, $id)
     {
         //gives access to the variable in index

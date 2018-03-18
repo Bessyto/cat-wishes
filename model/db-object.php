@@ -19,21 +19,30 @@ require ("getConfig.php");
  */
 class DBObject
 {
+    /**
+     * The constructor of the class
+     */
     function __contruct(){
 
     }
 
+    /**
+     * Function to connect to db
+     * @return PDO
+     */
     function connect()
     {
         try {
             $dbh = new PDO(DB_DSN, DB_USERNAME, DB_PASSWORD);
-//        echo "<p>Connected to database!</p>";
             return $dbh;
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
     }
 
+    /**
+     * Function to disconnect from the db
+     */
     function disconnect()
     {
         $dbh = "";

@@ -13,7 +13,6 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta charset="utf-8">
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -33,10 +32,7 @@
 
     <link href="{{ @BASE }}/styles/home.css" rel="stylesheet" type="text/css" />
 
-    <audio id="audio" >
-        <source src="./audio/Cat Meowing.mp3" type="audio">
-    </audio>
-</head>
+   </head>
 <body>
 
 
@@ -89,7 +85,7 @@
 <script>
       $(document).ready(function() {
         var audioElement = document.createElement('audio');
-        audioElement.setAttribute('src', './audio/Cat Meowing.mp3');
+        audioElement.setAttribute('src', './audio/CatMeowing.mp3');
 
         $('#adopt').click(function() {
            audioElement.play();
