@@ -1,13 +1,29 @@
 <?php
-ini_set('display_error', 1);
-error_reporting(E_ALL);
+/*
+ * Cat-Wishes Final Project
+ * IT-328
+ * top5toys.php
+ * Melanie Felton
+ * Bessy Torres-Miller
+ *
+ * This file call the function get items from the db-functions to get the 5 most recommended toys.
+ * Put the images in an array, then pass it to the hive
+ *
+ */
 
-session_start();
-
-require_once 'model/db-functions.php';
-
-$itemsArray = getItems($toys,5);
+$itemsArray = getItems(toys,5);
+$i=0;
 
 foreach ($itemsArray as $item) {
     $image = $item['image'];
+    $pics[$i] = $image;
+
+    $i++;
+
 }
+
+if(!is_null($pics)){
+  $f3->set('pics', $pics);
+
+}
+

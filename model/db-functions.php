@@ -136,13 +136,17 @@ function getItem($table, $id)
  * @param $numReturn
  * @return array
  */
-function getItems($table,$numReturn)
+function getItems($table,$numReturn=0)
 {
     //gives access to the variable in index
     global $dbh;
 
     //1. Define the query
-    $sql = "SELECT * FROM " . $table . " ORDER BY recommendation DESC"; // " LIMIT TO 5";
+    $sql = "SELECT * FROM " . $table . " ORDER BY recommendation DESC";
+
+    if($numReturn !=0){
+        $sql = $sql . " LIMIT 5";
+    }
 
     //2. Prepare the statement
     $statement = $dbh->prepare($sql);

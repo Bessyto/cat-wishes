@@ -1,4 +1,14 @@
 <?php
+/*
+ * Cat-Wishes Final Project
+ * IT-328
+ * index.php
+ * Melanie Felton
+ * Bessy Torres-Miller
+ *
+ * This is the index file that defines the different routes using Fat-Free
+ */
+
 ini_set('display_error', 1);
 error_reporting(E_ALL);
 
@@ -12,38 +22,33 @@ $f3->set("DEBUG", 3);
 
 //Connect to the database
 $dbh = connect();
-/*
- * Maybe this will work to kill that annowing session!
- * <?php
-    session_start();
-    session_unset();
-    session_destroy();
-    session_write_close();
-    setcookie(session_name(),'',0,'/');
-    session_regenerate_id(true);
-?>
- */
+
 require('userLogin.php');
 
+//Defines the array that contains the images of the carousel
 $f3->set("Carousel", array("Toys" => "images/carouselToys.jpg", "Food" => "images/carouselFood.jpg",
     "Furniture" => "images/carouselFurniture.jpg", "Vets" => "images/carouselVet.jpg"));
 
-$f3->route('GET|POST /', function () {
+//home page route
+$f3->route('GET|POST /', function ($f3, $params) {
+
+    require('top5toys.php');
+
     $template = new Template;
     echo $template->render
     ('views/home.html');
 }
 );
 
+//Route to recommend items, passing the item as a param
 $f3->route('GET|POST /recommend/@item', function ($f3, $params) {
-
 
     require('recommendBuilder.php');
 
 }
 );
 
-
+//Route to search page, where the cat API is used
 $f3->route('GET /search', function () {
     $template = new Template;
     echo $template->render
