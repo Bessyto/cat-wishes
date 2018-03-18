@@ -1,3 +1,13 @@
+<!--
+    header.html
+    IT-328
+    Cat-Wishes Final Project
+    This file has the head and header (nav bar) for Cat-Wishes web site.
+    Bessy Torres-Miller
+    Melanie Felton
+
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,11 +30,12 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <!--<link rel="shortcut icon" href="">-->
 
     <link href="{{ @BASE }}/styles/home.css" rel="stylesheet" type="text/css" />
 
-    <audio id="audio" src="./audio/Cat Meowing.mp3"></audio>
+    <audio id="audio" >
+        <source src="./audio/Cat Meowing.mp3" type="audio">
+    </audio>
 </head>
 <body>
 
@@ -39,62 +50,52 @@
         </a>
 
         <ul class="list-inline">
-            <!--<div class="list-inline">
-                <audio id="clickSound" class="list-inline">
-                    <source src="./audio/Cat Meowing.mp3">
-                </audio>
-                <a id="adopt" href="{{@BASE}}/search" class="text-warning list-inline-item"> <h4>Adopt a Cat</h4> </a>
-            </div>-->
             <a href="{{@BASE}}/recommend/toys" class="text-danger list-inline-item"> <h4>Toys</h4> </a>
             <a href="{{@BASE}}/recommend/food" class="text-danger list-inline-item"> <h4>Food</h4> </a>
             <a href="{{@BASE}}/recommend/furniture" class="text-danger list-inline-item"> <h4>Furniture</h4> </a>
             <a href="{{@BASE}}/recommend/vets" class="text-danger list-inline-item"> <h4>Vets</h4> </a>
-            <a href="{{@BASE}}/search" class="text-warning list-inline-item" value="PLAY" onclick="play()"> <h4>Adopt a Cat</h4> </a>
-
-
+            <a href="{{@BASE}}/search" class="text-warning list-inline-item" id="adopt" > <h4>Adopt a Cat</h4> </a>
 
             <li class="list-inline-item"><form action="./{{@item}}" method="post"><div class="member"></div></form>
                 <check if="{{@SESSION['username']}}">
                     <true><p>Welcome, {{@SESSION['username']}} ! your access level is {{@SESSION['access']}}</p>
-                        <form action="./{{@item}}" method="post"><input id="logout" name="logout" value="Logout" type="submit"></form>
+                        <form action="./{{@item}}" method="post"><input id="logout" name="logout" value="Logout" type="submit" class="btn btn-warning"></form>
                     </true>
                     <false><li class="list-inline-item"><button id= "login" type="submit" name ="login1" class="btn btn-warning">Login</button></li></false>
                 </check>
 
             </li>
-
-
         </ul>
 
     </nav>
 </header>
 
+<!-- JQuery for user Login -->
 <script>
-
-    //formBegin = jQuery('<form action="./" method="post">');
     user = jQuery('<li class="list-inline-item"><input class="form-control form-control-sm" type="text" name="username" id="username" placeholder="username"></li>');
     pass = jQuery('<li class="list-inline-item"><input class="form-control form-control-sm" type="password" name="password" id="password" placeholder="password"></li>');
     submit = jQuery ('<li class="list-inline-item"><button id="submit" type="submit" name="login" class="btn btn-warning" href="./">Submit</button></li>');
 
     $('button').click(function() {
-
             $('#login').hide("slow");
             $('.member').append(user);
             $('.member').append(pass);
             $('.member').append(submit);
             }
     );
-
 </script>
 
 
 <script>
-    function play(){
-        var audio = document.getElementById("audio");
-            audio.play();
-        }
+      $(document).ready(function() {
+        var audioElement = document.createElement('audio');
+        audioElement.setAttribute('src', './audio/Cat Meowing.mp3');
 
+        $('#adopt').click(function() {
+           audioElement.play();
 
+        });
+      });
 </script>
 
 
