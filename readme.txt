@@ -1,8 +1,9 @@
-readme.txt
-Cat-Wishes Final Project
-Melanie Felton
-Bessy Torres-Miller
-IT-328
+    IT-328
+    readme.txt
+    Cat-Wishes Final Project
+    Melanie Felton
+    Bessy Torres-Miller
+    IT-328
 
 This file describes how each of the following requirements are implemented in Cat-Wishes project
 ------------------------------------------------------------------------------------------------------------------------
@@ -25,7 +26,7 @@ This file describes how each of the following requirements are implemented in Ca
     The data base has different tables where the user can request (view) information from the different items: toys,
     furniture,vets and food. Also, he/she can add new items, update existing information by recommending specific items
     and delete items from the db.
-    A general user (not loggin needed) can only view information and recommend items (update).
+    A general user (not login needed) can only view information and recommend items (update).
     In order to add and delete information from the db, the user must login.
     User with access level=0, can add information and user with access level grater than 0 can add and delete too.
 
