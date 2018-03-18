@@ -81,7 +81,8 @@ if (isset($_POST['submit'])) {
         //sets a default for them to display
 //        $table = 'toys';
         $table = $basicObjectType;
-        addItem($table, $name, $description, $recommendations, $image);
+        $dbItem = new DBItem();
+        $results = $dbItem->addItem(strtolower($table), $name, $description, $recommendations, $image);
     }
 
     unset($_POST);

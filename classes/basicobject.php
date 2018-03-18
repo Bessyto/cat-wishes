@@ -32,10 +32,14 @@ class BasicObject
      * @param $description
      * @param $recommendations
      */
-    public function __construct($id = 0, $name = "Generic Toy", $description = "Does nothing.", $recommendations = 0)
+    public function __construct($id = 0, $name = "Generic Item", $description = "Does nothing.", $recommendations = 0)
     {
         $this->id = $id;
-        $this->name = $name;
+        if(strlen($name) != 0) {
+            $this->name = $name;
+        } else {
+            $name = "Unknown Item";
+        }
         $this->description = $description;
         $this->recommendations = $recommendations;
     }
@@ -61,7 +65,11 @@ class BasicObject
      */
     public function getName()
     {
-        return $this->name;
+        if(strlen($this->name) != 0) {
+            return $this->name;
+        } else {
+            return "Unknown Item";
+        }
     }
 
     /**
@@ -69,7 +77,11 @@ class BasicObject
      */
     public function setName($name)
     {
-        $this->name = $name;
+        if(strlen($name) != 0) {
+            $this->name = $name;
+        } else {
+            $name = "Unknown Item";
+        }
     }
 
     /**
