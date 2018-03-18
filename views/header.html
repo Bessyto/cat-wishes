@@ -57,7 +57,9 @@
                     <true><p>Welcome, {{@SESSION['username']}} ! your access level is {{@SESSION['access']}}</p>
                         <form action="./{{@item}}" method="post"><input id="logout" name="logout" value="Logout" type="submit" class="btn btn-warning"></form>
                     </true>
-                    <false><li class="list-inline-item"><button id= "login" type="submit" name ="login1" class="btn btn-warning">Login</button></li></false>
+                    <false>
+                        <li class="list-inline-item"><button id= "login" type="submit" name ="login1" class="btn btn-warning">Login</button></li>
+                    </false>
                 </check>
 
             </li>

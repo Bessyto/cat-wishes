@@ -16,7 +16,7 @@ This file describes how each of the following requirements are implemented in Ca
     *index.php that receive user requests, get data from the model, and return views
 
 - Routes all URLs and leverages a templating language using the Fat-Free framework.
-    The index file has the needed routes, rendering to the correct path using Fat-Free framework
+    The index.php file has the needed routes, rendering to the correct path using Fat-Free framework
 
 - Has a clearly defined database layer using PDO and prepared statements.
     Each function in the db-functions file has defined the needed steps: prepare the query, prepare the statement,
@@ -33,7 +33,6 @@ This file describes how each of the following requirements are implemented in Ca
 - Has a history of commits from both team members to a Git repository.
     Github has commits from both team members:
     * https://github.com/Bessyto/cat-wishes
-    * https://github.com/feltonm
 
 - Uses OOP, and defines multiple classes, including at least one inheritance relationship.
     Multiples classes are defined.
@@ -52,7 +51,10 @@ This file describes how each of the following requirements are implemented in Ca
 - Incorporates jQuery and Ajax.
     JQuery: Used in the Login option in the nav bar. When user click Login button, the input options to write username
     and password will prompt to the user with the button Submit. The user also will have the option to Logout.
-    Ajax:
+
+    Ajax: Our ajax is contained in scripts/rank-scripts used by rank.html. It is invoked whenever a user clicks on
+    a recommended item. It calls the details.php file (which makes a call to the database). The html returned by
+    details.php is then displayed in place of the recommended items without reloading the whole page.
 
 - BONUS:  Utilizes an API:
     Cat-Wishes presents in the nav bar under the link "Adopt a Cat" the option where the user is render
