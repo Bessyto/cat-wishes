@@ -29,7 +29,7 @@
                 <input type="text" name="itemName" id="itemName" placeholder="New {{@item}}"></input>
 
                 <textarea name="description" id="description" placeholder="Description"></textarea>
-                <check if="strcmp(get_class(@toy),'Vets') != 0">
+                <check if="{{strcmp(@basicObjectType,'Vets') != 0}}">
                     <label>Select image to upload:</label>
                     <input type="file" name="fileToUpload" id="fileToUpload">
                     <div id="fileValidation"></div>
