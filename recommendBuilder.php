@@ -71,17 +71,48 @@ if (isset($_POST['submit'])) {
     }
 
     if (($accessLevel>=0) && !empty($_POST['itemName'])) {
-
+        $addItemValid  = false;
         $name = (empty($_POST['itemName'])) ? 'Something Went Wrong' : $_POST['itemName'];
         $description = (empty($_POST['description'])) ? '' : $_POST['description'];
-        $recommendations = 1;
-        if(isset($_FILES[fileToUpload])) {
-            require("model/upload.php");
+
+        // makes sure the string contains only common characters
+        function validateString($string)
+        {
+            $newString = preg_replace('/[^\da-z,. -]/i', '',$string);
+            return strcmp($string,$newString)==0;
         }
 
-        $table = $basicObjectType;
-        $dbItem = new DBItem();
-        $results = $dbItem->addItem(strtolower($table), $name, $description, $recommendations, $image);
+        // makes sure the name contains some digits or letters and is a valid string
+        function validateName($string){
+            $letters = preg_replace('/[^\da-z]/i', '',$string);
+            return strlen($letters)!= 0 && validateString($string);
+        }
+
+
+        if(validateName($name) && validateString($description))
+        {
+            $addItemValid= true;
+        }
+
+
+        //If name and description are valids, add them to the db
+        if($addItemValid)
+        {
+            $recommendations = 1;
+            if(isset($_FILES[fileToUpload])) {
+                require("model/upload.php");
+            }
+
+            $table = $basicObjectType;
+            $dbItem = new DBItem();
+            $results = $dbItem->addItem(strtolower($table), $name, $description, $recommendations, $image);
+
+        }
+        else
+        {
+            echo "Invalid name or description";
+        }
+
     }
 
     unset($_POST);

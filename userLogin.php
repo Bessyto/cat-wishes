@@ -1,4 +1,14 @@
 <?php
+/*
+ *  userLogin.php
+ *  Cat-Wishes Final Project
+ *  IT-328
+ *  Melanie Felton
+ *  Bessy Torres-Miller
+ *
+ *  This file call the function checkMember to get the access level of the username whe he/she login.
+ *  Also, destroy the session after user logout.
+ */
 
 if (!empty($_POST['username']) && !empty($_POST['password'])) {
 
