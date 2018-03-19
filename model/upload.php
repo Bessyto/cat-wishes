@@ -10,9 +10,6 @@
     and size of the image.
 */
 
-$_SESSION['image_messages'] = "Thought I should put something here!";
-
-
 $image = "";
 $target_dir = "./user_images/";
 $imageErrorMessages = "";
@@ -67,7 +64,7 @@ if ((!empty($_FILES["fileToUpload"]["size"]))) {
 
     // Check if $uploadOk is set to 0 by an error
     if ($uploadOk == 0) {
-        $_SESSION['image_messages'] = $imageErrorMessages;
+        $f3->set('imageErrorMessages',"Sorry, there was an error uploading your image.");
         echo "Sorry, your file was not uploaded.";
     }
     // if everything is ok, try to upload file
@@ -77,6 +74,7 @@ if ((!empty($_FILES["fileToUpload"]["size"]))) {
             $image = $target_file;
         }
         else {
+            $f3->set('imageErrorMessages',"Sorry, there was an error uploading your image.");
             echo "Sorry, there was an error uploading your file.";
         }
     }

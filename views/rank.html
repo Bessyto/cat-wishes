@@ -2,11 +2,11 @@
 <div id="details" class="mx-3 my-3 py-3 px-4 border border-light">
 
     <h1 class="row h2 text-center">Which {{ @basicObjectType}} does your cat recommend?</h1>
-    <check if="{{@SESSION['image_messages']}}">
-        <h2 class="row text-danger">{{@SESSION['image_messages']}}</h2>
+    <check if="{{@imageErrorMessages}}">
+        <h2 class="row text-danger">{{@imageErrorMessages}}</h2>
     </check>
 
-    <form method="post" action="./{{@item}}" class="row w-100 py-3" enctype="multipart/form-data">
+    <form id="recommend_form" method="post" action="./{{@item}}" class="row w-100 py-3" enctype="multipart/form-data">
         <repeat group="{{@catObjects}}" key="{{@key}}" value="{{@toy}}">
             <div class="col-md-3 py-3">
                 <input type="checkbox" name="recommends[]" value="{{@toy->getName()}}">
@@ -24,22 +24,29 @@
             </div>
         </repeat>
         <check if="{{@SESSION['username']}}">
-            <div class="col-md-3 py-3">
-                <input type="checkbox" name="recommends[]" value="new"></input>
-                <input type="text" name="itemName" id="itemName" placeholder="New {{@item}}"></input>
+            <true>
+                <div class="col-md-3 py-3">
+                    <input type="checkbox" name="recommends[]" value="new">
+                    <input type="text" name="itemName" id="item_name" value=" " placeholder="New {{@item}}">
 
-                <textarea name="description" id="description" placeholder="Description"></textarea>
-                <check if="{{strcmp(@basicObjectType,'Vets') != 0}}">
-                    <label>Select image to upload:</label>
-                    <input type="file" name="fileToUpload" id="fileToUpload">
-                    <div id="fileValidation"></div>
-                </check>
+                    <textarea name="description" id="description" placeholder="Description"></textarea>
+                    <check if="{{strcmp(@basicObjectType,'Vets') != 0}}">
+                        <label>Select image to upload:</label>
+                        <input type="file" name="fileToUpload" id="fileToUpload">
+                        <div id="fileValidation"></div>
+                    </check>
 
-            </div>
+                </div>
+                <input class="btn btn-success btn-block btn-lg mx-3 my-3" type="submit" name="submit" id="recommendplus"
+                       value="Recommend">
+            </true>
+            <false>
+                <input class="btn btn-success btn-block btn-lg mx-3 my-3" type="submit" name="submit" id="recommend"
+                       value="Recommend">
+
+            </false>
         </check>
-        <input class="btn btn-success btn-block btn-lg mx-3 my-3" type="submit" name="submit" id="recommend"
-               value="Recommend">
-        </input>
+
     </form>
 
 </div>
@@ -52,5 +59,29 @@
         crossorigin="anonymous"></script>
 
 <script src="../scripts/rank-scripts.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#recommendplus').click(function () {
+            var itemName = $('#item_name').val();
+            var invalid = false;
+
+            // var description = $('#description').val();
+
+            var badStrings = ["<a","<im","src","href","@", "{{", "url", "http", "\\", "/"];
+            if (itemName.length !== 0) {
+                for(var i = 0; i < badStrings.length; i++) {
+                    if (itemName.indexOf(badStrings[i]) >= 0) {
+                        event.preventDefault();
+                        alert("Html is not allowed.");
+                        invalid = true;
+                    }
+                }
+            }
+            if(invalid){
+                $('#item_name').val("");
+            }
+        });
+    });
+</script>
 </body>
 </html>

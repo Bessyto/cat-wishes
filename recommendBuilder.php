@@ -1,6 +1,7 @@
 <?php
 
 $basicObjectType = $params['item'];
+$accessLevel = $_SESSION['access'];
 
 $routeItem= $params['item'];
 $f3->set('item', $basicObjectType);
@@ -8,7 +9,7 @@ $f3->set('basicObjectType', ucfirst($basicObjectType));
 
 $table = strtolower($basicObjectType);
 
-if(isset($_POST['submit']) && (strpos($_POST['submit'],'Delete') === 0)){
+if(($accessLevel==2) && isset($_POST['submit']) && (strpos($_POST['submit'],'Delete') === 0)){
     $idName = preg_replace('/[^\da-z]/i', '',trim(substr($_POST['submit'],7)));
     echo $idName."<br>";
     $id = $_POST[$idName];
@@ -16,7 +17,8 @@ if(isset($_POST['submit']) && (strpos($_POST['submit'],'Delete') === 0)){
     $table = strtolower($basicObjectType);
     echo $id."  ".$table."<br>";
     deleteItem($table,$id);
-//        $f3->reroute('');
+    unset($_POST);
+    $f3->reroute('/recommend/'.$routeItem);
 }
 
 //getting 0 items makes no sense, so if ask for 0, returns all items
@@ -67,8 +69,8 @@ if (isset($_POST['submit'])) {
             }
         }
     }
-    $member = true;
-    if ($member && !empty($_POST['itemName'])) {
+
+    if (($accessLevel>=0) && !empty($_POST['itemName'])) {
 
         $name = (empty($_POST['itemName'])) ? 'Something Went Wrong' : $_POST['itemName'];
         $description = (empty($_POST['description'])) ? '' : $_POST['description'];
@@ -76,17 +78,17 @@ if (isset($_POST['submit'])) {
         if(isset($_FILES[fileToUpload])) {
             require("model/upload.php");
         }
-//        $image = (empty($_POST['image'])) ? '' : $_POST['image'];
 
-        //sets a default for them to display
-//        $table = 'toys';
         $table = $basicObjectType;
         $dbItem = new DBItem();
         $results = $dbItem->addItem(strtolower($table), $name, $description, $recommendations, $image);
     }
 
     unset($_POST);
-    $f3->reroute('/recommend/'.$routeItem);
+
+    if(!(strlen($f3->get('imageErrorMessages') > 1))){
+        $f3->reroute('/recommend/' . $routeItem);
+    }
 }
 
 $template = new Template;

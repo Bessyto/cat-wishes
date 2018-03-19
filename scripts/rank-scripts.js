@@ -19,14 +19,12 @@ $('.get-item').click(function () {
         {id: id, table: table},
         function (result) {
             $('#details').html(result);
-            // alert('in result image');
         }
     );
 });
 
 $('#fileToUpload').change(function () {
 
-    // alert("Handler for change() called.");
     var x = document.getElementById("fileToUpload");
     var txt = "";
     if ('files' in x) {
