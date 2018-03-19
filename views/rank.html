@@ -76,6 +76,23 @@
                         invalid = true;
                     }
                 }
+
+                var description = $('#description').val();
+                invalidDesc = false;
+
+                var badStrings = ["<a","<im","src","href","@", "{{", "url", "http", "\\", "/"];
+                if (description.length !== 0) {
+                    for(var i = 0; i < badStrings.length; i++) {
+                        if (description.indexOf(badStrings[i]) >= 0) {
+                            event.preventDefault();
+                            alert("Html is not allowed.");
+                            invalidDesc = true;
+                        }
+                    }
+                }
+                if(invalidDesc){
+                    $('#description').val("");
+                }
             }
             if(invalid){
                 $('#item_name').val("");
