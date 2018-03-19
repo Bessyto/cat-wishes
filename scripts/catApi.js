@@ -14,7 +14,7 @@ $("#search").click(function(){
 
     //Define the variable the user enter
     var item = $("#searchTerm").val();
-    //$("#name").html("");
+    $("#name").html(" ");
 
     var url = "http://api.petfinder.com/pet.find?format=json&key=7dcf425006a4a9342ee8d6975483e187&animal=cat";
     url+= "&location=" + item;
@@ -37,8 +37,10 @@ $("#search").click(function(){
                     output += "<p> Description: " + pet.description.$t + "</p></div>";
                     $("#name").append(output);
                 });
+
         })
         .error(function(err) {
             alert('Error retrieving data!');
         });
+
 });
