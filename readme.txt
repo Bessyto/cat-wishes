@@ -47,6 +47,7 @@ This file describes how each of the following requirements are implemented in Ca
     Each document has DocBlocks, header with the file description and purpose, and some comments.
 
 - Has full validation on the client side through JavaScript and server side through PHP.
+    *Validates the image that the user upload when a new item is recommended - upload.php file
 
 - Incorporates jQuery and Ajax.
     JQuery: Used in the Login option in the nav bar. When user click Login button, the input options to write username

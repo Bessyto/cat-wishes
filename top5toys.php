@@ -17,9 +17,7 @@ $i=0;
 foreach ($itemsArray as $item) {
     $image = $item['image'];
     $pics[$i] = $image;
-
     $i++;
-
 }
 
 if(!is_null($pics)){

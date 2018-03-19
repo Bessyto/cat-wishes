@@ -1,10 +1,13 @@
 <?php
-/* code to insert into an html file
-<form action="model/upload.php" method="post" enctype="multipart/form-data">
-                        Select image to upload:
-                        <input type="file" name="fileToUpload" id="fileToUpload">
-                        <input type="submit" value="Upload Image" name="submit">
-                    </form>
+/*
+    upload.php
+    IT-328
+    Cat-Wishes Final Project
+    Melanie Felton
+
+    This file checks the image that the user upload when recommends a new item.
+    Check if the image file an image, check if it is repeated in the db, checks for the format
+    and size of the image.
 */
 
 $_SESSION['image_messages'] = "Thought I should put something here!";
@@ -18,7 +21,8 @@ if ((!empty($_FILES["fileToUpload"]["size"]))) {
     $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-// Check if image file is a actual image or fake image
+
+    // Check if image file is a actual image or fake image
     $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
     if ($check !== false) {
         echo "File is an image - " . $check["mime"] . ".";
@@ -27,6 +31,7 @@ if ((!empty($_FILES["fileToUpload"]["size"]))) {
         $imageErrorMessages += "File Upload Error: not an image.<br>";
         $uploadOk = 0;
     }
+
     // Check if file already exists or add a number if a duplicate
     $duplicateCount = 0;
     if (file_exists($target_file)) {
@@ -59,18 +64,19 @@ if ((!empty($_FILES["fileToUpload"]["size"]))) {
         echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
         $uploadOk = 0;
     }
-//}
-// Check if $uploadOk is set to 0 by an error
-       if ($uploadOk == 0) {
+
+    // Check if $uploadOk is set to 0 by an error
+    if ($uploadOk == 0) {
         $_SESSION['image_messages'] = $imageErrorMessages;
         echo "Sorry, your file was not uploaded.";
-// if everything is ok, try to upload file
-    } else {
+    }
+    // if everything is ok, try to upload file
+    else {
         if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
             echo "The file " . basename($_FILES["fileToUpload"]["name"]) . " has been uploaded.";
             $image = $target_file;
-
-        } else {
+        }
+        else {
             echo "Sorry, there was an error uploading your file.";
         }
     }
