@@ -40,8 +40,8 @@
 <header>
     <!-- Just an image -->
     <nav class="navbar navbar-light bg-faded bg-info text-white">
-        <a class="navbar-brand w-20" href="{{@BASE}}">
-            <img class="col-md-5" id="logo" src="{{@BASE}}/images/logo.png" alt="Cat Wishes logo">
+        <a class="navbar-brand"  id="logoSite" href="{{@BASE}}">
+            <img class="col-md-12" id="logo" src="{{@BASE}}/images/logo.png" alt="Cat Wishes logo">
 
         </a>
 
@@ -58,7 +58,10 @@
                         <form action="./{{@item}}" method="post"><input id="logout" name="logout" value="Logout" type="submit" class="btn btn-warning"></form>
                     </true>
                     <false>
-                        <li class="list-inline-item"><button id= "login" type="submit" name ="login1" class="btn btn-warning">Login</button></li>
+                        <li class="list-inline-item">
+                            <button id= "login" type="submit" data-toggle="popover" title="For account: mfelton@mail.greenriver.edu" name ="login1" class="btn btn-warning">Login
+                            </button>
+                        </li>
                     </false>
                 </check>
 

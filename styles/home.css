@@ -8,6 +8,7 @@ body
     background-image: url("../images/wallpaper.jpg");
     background-color: darksalmon;
     color: white;
+
 }
 
 .container{
@@ -30,5 +31,10 @@ body
 }
 
 .carousel-item .img-fluid {
-    width:80%;
+    width:30%;
+}
+
+#logoSite{
+    width: 200px;
+    height: 50px;
 }
