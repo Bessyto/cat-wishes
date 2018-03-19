@@ -23,39 +23,8 @@
 
 <div id="name" class="row"></div>
 
-<script>
-    //search button is clicked
-    $("#search").click(function(){
-
-        //Define the variable the user enter
-        var item = $("#searchTerm").val();
-        $("#name").html("");
-
-        var url = "http://api.petfinder.com/pet.find?format=json&key=7dcf425006a4a9342ee8d6975483e187&animal=cat";
-        url+= "&location=" + item;
-        url+=  "&output=full&callback=?";
-
-        $.getJSON(url)
-            .done(function(petApiData) {
-
-                $.each(petApiData.petfinder.pets.pet, function (index, pet) {
-                    var output = "<div class='col-md-4 p-4 border rounded'><h3> Name: "+ pet.name.$t + "</h3>";
-                    output += "<h4>Gender: "+pet.sex.$t+"&emsp;&emsp;City: "+ pet.contact.city.$t + "</h4>";
-                    try{
-                        output += '<img src="'+ pet.media.photos.photo[2].$t +'" ><hr>' ;
-                    }
-                    catch(err){
-
-                    }
-                    output += "<p> Description: " + pet.description.$t + "</p></div>";
-                    $("#name").append(output);
-
-                });
-            })
-            .error(function(err) { alert('Error retrieving data!');
-            });
-    });
-</script>
+<!-- JQuery to use cat API -->
+<script src="./scripts/catApi.js"></script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
