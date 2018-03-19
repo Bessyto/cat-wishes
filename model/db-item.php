@@ -62,7 +62,12 @@ class DBItem extends DBObject
 
     }
 
-    //Get One item (a single row) from Database
+    /**
+     * Get One item (a single row) from Database
+     * @param $table
+     * @param $id
+     * @return mixed
+     */
     function get($table, $id)
     {
         //gives access to the variable in index
