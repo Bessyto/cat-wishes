@@ -18,11 +18,11 @@ class DBItem extends DBObject
 {
     /**
      * Function to add an item to the db
-     * @param $table
-     * @param $name
-     * @param $description
-     * @param int $recommendation
-     * @param string $image
+     * @param $table - table in database that item should be added to
+     * @param $name - name of item to add
+     * @param $description - description of item to add
+     * @param int $recommendation - number of recommendations to add, starts at 1
+     * @param string $image - image path associated with the item (optional)
      */
     function addItem($table, $name, $description, $recommendation = 1, $image = "")
     {
@@ -64,9 +64,9 @@ class DBItem extends DBObject
 
     /**
      * Get One item (a single row) from Database
-     * @param $table
-     * @param $id
-     * @return mixed
+     * @param $table - table in database that item should be added to
+     * @param $id - id number of the item to get
+     * @return mixed - the result array containing information about the item
      */
     function get($table, $id)
     {
@@ -96,8 +96,8 @@ class DBItem extends DBObject
 
     /**
      * Function to remove an specific item from the db
-     * @param $table
-     * @param $id
+     * @param $table - table in database that item should be added to
+     * @param $id - id number of the item to get
      */
     function deleteItem($table, $id)
     {
