@@ -1,6 +1,8 @@
 <?php
 /**
  *
+ * Not in use anymore.
+ *
  * Melanie Felton
  * Bessy Torres-Miller
  * Date: 2/18/2018
@@ -33,7 +35,7 @@ function connect()
  * @param $id
  * @param $recommendation
  */
-function updateRecommendation($table, $id, $recommendation)
+function oldupdateRecommendation($table, $id, $recommendation)
 {
     //gives access to the variable in index
     global $dbh;
@@ -67,7 +69,7 @@ function updateRecommendation($table, $id, $recommendation)
  * @param int $recommendation
  * @param string $image
  */
-function addItem($table, $name, $description, $recommendation =1, $image = "")
+function oldaddItem($table, $name, $description, $recommendation =1, $image = "")
 {
     //gives access to the variable in index
     global $dbh;
@@ -107,7 +109,7 @@ function addItem($table, $name, $description, $recommendation =1, $image = "")
  * @param $id
  * @return mixed
  */
-function getItem($table, $id)
+function oldgetItem($table, $id)
 {
     //gives access to the variable in index
     global $dbh;
@@ -136,7 +138,7 @@ function getItem($table, $id)
  * @param $numReturn
  * @return array
  */
-function getItems($table,$numReturn=0)
+function oldgetItems($table,$numReturn=0)
 {
     //gives access to the variable in index
     global $dbh;
@@ -169,7 +171,7 @@ function getItems($table,$numReturn=0)
  * @param $table
  * @param $id
  */
-function deleteItem($table, $id)
+function olddeleteItem($table, $id)
 {
     //gives access to the variable in index
     global $dbh;
@@ -198,7 +200,7 @@ function deleteItem($table, $id)
  * @param $password
  * @return int
  */
-function checkMember($table, $username, $password)
+function oldcheckMember($table, $username, $password)
 {
     //gives access to the variable in index
     global $dbh;

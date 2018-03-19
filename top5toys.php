@@ -11,17 +11,18 @@
  *
  */
 
-$itemsArray = getItems(toys,5);
-$i=0;
+$dbitems = new DBItems();
+$itemsArray = $dbitems->getItems(toys, 5);
 
 foreach ($itemsArray as $item) {
+    $name = $item['name'];
     $image = $item['image'];
-    $pics[$i] = $image;
-    $i++;
+
+    $pics[$name] = $image;
 }
 
-if(!is_null($pics)){
-  $f3->set('pics', $pics);
+if (!is_null($pics)) {
+    $f3->set('pics', $pics);
 
 }
 

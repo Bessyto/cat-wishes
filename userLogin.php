@@ -16,7 +16,8 @@ if (!empty($_POST['username']) && !empty($_POST['password'])) {
     $password = (empty($_POST['password'])) ? '' : $_POST['password'];
     $table = "cat_members";
 
-    $access = checkMember($table, $username, $password);
+    $dbmember = new DBMembers();
+    $access = $dbmember->checkMember($table, $username, $password);
     $_SESSION['access'] = $access;
 
     if ($access >= 0) {

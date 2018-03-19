@@ -24,23 +24,23 @@ class DBItem extends DBObject
      * @param int $recommendation
      * @param string $image
      */
-    function addItem($table, $name, $description, $recommendation =1, $image = "")
+    function addItem($table, $name, $description, $recommendation = 1, $image = "")
     {
         //gives access to the variable in index
         global $dbh;
         $dbh = Parent::connect();
 
         //1. Define the query
-        $sql = "INSERT INTO ".$table;
+        $sql = "INSERT INTO " . $table;
         $sql = $sql . " (name, description,";
         $sql = $sql . " recommendation";
-        if(strlen( $image) != 0) $sql = $sql . ", image";
-        $sql = $sql.") ";
+        if (strlen($image) != 0) $sql = $sql . ", image";
+        $sql = $sql . ") ";
 
         $sql = $sql . "VALUES ( :name, :description, ";
         $sql = $sql . ":recommendation";
-        if(strlen( $image) != 0) $sql = $sql . ", :image";
-        $sql = $sql.")";
+        if (strlen($image) != 0) $sql = $sql . ", :image";
+        $sql = $sql . ")";
 
         //2. Prepare the statement
         $statement = $dbh->prepare($sql);
@@ -49,7 +49,7 @@ class DBItem extends DBObject
         $statement->bindParam(':name', $name, PDO::PARAM_STR);
         $statement->bindParam(':description', $description, PDO::PARAM_STR);
         $statement->bindParam(':recommendation', $recommendation, PDO::PARAM_INT);
-        if(strlen( $image) != 0) $statement->bindParam(':image', $image, PDO::PARAM_STR);
+        if (strlen($image) != 0) $statement->bindParam(':image', $image, PDO::PARAM_STR);
 
         //4.Execute statement
         $statement->execute();
@@ -74,7 +74,7 @@ class DBItem extends DBObject
         global $dbh;
         $dbh = Parent::connect();
         //1. Define the query
-        $sql = "SELECT * FROM ". $table ." WHERE id = :id";
+        $sql = "SELECT * FROM " . $table . " WHERE id = :id";
 
         //2. Prepare the statement
         $statement = $dbh->prepare($sql);
@@ -91,6 +91,35 @@ class DBItem extends DBObject
         Parent::disconnect();
 
         return $result;
+    }
+
+
+    /**
+     * Function to remove an specific item from the db
+     * @param $table
+     * @param $id
+     */
+    function deleteItem($table, $id)
+    {
+        //gives access to the variable in index
+        global $dbh;
+        $dbh = Parent::connect();
+
+        //Define the query
+        $sql = "DELETE FROM " . $table . " WHERE id = :id";
+
+        echo $sql;
+
+        //Prepare the statement
+        $statement = $dbh->prepare($sql);
+
+        // Bind parameters
+        $statement->bindParam(':id', $id, PDO::PARAM_INT);
+
+        //4.Execute statement
+        $statement->execute();
+
+        Parent::disconnect();
     }
 }
 ?>

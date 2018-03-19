@@ -29,13 +29,15 @@ if(($accessLevel==2) && isset($_POST['submit']) && (strpos($_POST['submit'],'Del
 
     $table = strtolower($basicObjectType);
     echo $id."  ".$table."<br>";
-    deleteItem($table,$id);
+    $dbItem = new DBItem();
+    $results = $dbItem->deleteItem($table,$id);
     unset($_POST);
     $f3->reroute('/recommend/'.$routeItem);
 }
 
 //getting 0 items makes no sense, so if ask for 0, returns all items
-$itemsArray = getItems($table,0);
+$dbItems = new DBItems();
+$itemsArray = $dbItems->getItems($table,0);
 $i = 0;
 
 foreach ($itemsArray as $item) {
@@ -78,7 +80,8 @@ if (isset($_POST['submit'])) {
 //                $table = strtolower($arrayName);
                 $id = $item->getId();
                 $recommendation = $item->getRecommendations() + 1;
-                updateRecommendation($table, $id, $recommendation);
+                $dbItems = new DBItems();
+                $dbItems->updateRecommendation($table, $id, $recommendation);
             }
         }
     }
@@ -135,6 +138,3 @@ if (isset($_POST['submit'])) {
     }
 }
 
-$template = new Template;
-echo $template->render
-('views/rank.html');
