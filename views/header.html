@@ -72,32 +72,10 @@
 </header>
 
 <!-- JQuery for user Login -->
-<script>
-    user = jQuery('<li class="list-inline-item"><input class="form-control form-control-sm" type="text" name="username" id="username" placeholder="username"></li>');
-    pass = jQuery('<li class="list-inline-item"><input class="form-control form-control-sm" type="password" name="password" id="password" placeholder="password"></li>');
-    submit = jQuery ('<li class="list-inline-item"><button id="submit" type="submit" name="login" class="btn btn-warning" href="./">Submit</button></li>');
-
-    $('button').click(function() {
-            $('#login').hide("slow");
-            $('.member').append(user);
-            $('.member').append(pass);
-            $('.member').append(submit);
-            }
-    );
-</script>
+<script src="../scripts/login.js"></script>
+<script src="./scripts/login.js"></script>
 
 
-<script>
-      $(document).ready(function() {
-        var audioElement = document.createElement('audio');
-        audioElement.setAttribute('src', './audio/CatMeowing.mp3');
-
-        $('#adopt').click(function() {
-           audioElement.play();
-
-        });
-      });
-</script>
 
 
 
