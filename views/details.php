@@ -1,9 +1,14 @@
 <?php
+/*
+ *  details.php
+ *  Cat-Wishes Final Project
+ *  IT-328
+ *  Melanie Felton
+ *
+ *  This file is called by the AJAX and retrieves a single item, returns with the HTML formatting
+ */
     $table = $_POST['table'];
     $id = $_POST['id'];
-    //    echo "Got in details";
-//    include("../model/db-functions.php");
-//    $results = getItem(strtolower($table), $id);
 
     include("../model/db-object.php");
     include("../model/db-item.php");

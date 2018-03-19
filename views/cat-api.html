@@ -1,8 +1,11 @@
-<!--API Key
-7dcf425006a4a9342ee8d6975483e187
+<!--
+    cat-api.html
+    Cat-Wishes Final Project
+    IT-328
+    Melanie Felton
+    Bessy Torres-Miller
 
-API Secret
-346a8d4b2ff7ef73076dbc5ebec3dbc6
+    This file has the the JSON script to use the Pet Finder API and retrieves the results
 -->
 
 
@@ -35,7 +38,6 @@ API Secret
         $.getJSON(url)
             .done(function(petApiData) {
 
-                //alert(petApiData.petfinder.pets.pet[0].description.$t);
                 $.each(petApiData.petfinder.pets.pet, function (index, pet) {
                     var output = "<div class='col-md-4 p-4 border rounded'><h3> Name: "+ pet.name.$t + "</h3>";
                     output += "<h4>Gender: "+pet.sex.$t+"&emsp;&emsp;City: "+ pet.contact.city.$t + "</h4>";
@@ -49,14 +51,11 @@ API Secret
                     $("#name").append(output);
 
                 });
-
             })
             .error(function(err) { alert('Error retrieving data!');
             });
-
     });
 </script>
-
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
