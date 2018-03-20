@@ -1,26 +1,27 @@
 <?php
 /**
- * The basic class for connecting to the database.
+ * Class DBItems extends DBObject adding the ability to get/update multiple items.
  *
- * @author Melanie Felton
+ * @author Melanie Felton & Bessy Torres-Miller
  * @copyright  2018
  * @version 0.1
  */
 
 
 /**
- * Class DBItem extends DBObject adding the ability to get an item.
+ * Class DBItem extends DBObject adding the ability to get/update multiple items.
  *
- * @author Melanie Felton
+ * @author Melanie Felton & Bessy Torres-Miller
  * @copyright  2018
  */
 class DBItems extends DBObject
 {
     /**
      * Get a specified number/all items (all rows) from a table in the Database
+     *
      * @param $table - the table to pull from
      * @param $numReturn - the number of results to return
-     * @return mixed
+     * @return mixed - the specified number of items from the database
      */
     function getItems($table, $numReturn = 0)
     {
@@ -55,10 +56,11 @@ class DBItems extends DBObject
     }
 
     /**
-     * Function to update (do a recommendation) an specific item in the db
-     * @param $table
-     * @param $id
-     * @param $recommendation
+     * Function to update (do a recommendation of) a specific item in the db
+     * @param $table - table in database that item should be added to
+     * @param $id - id number of the item to get
+     * @param $recommendation - the updated number of recommendations. Notice
+     *              this is not thread-safe.
      */
     function updateRecommendation($table, $id, $recommendation)
     {
@@ -88,6 +90,5 @@ class DBItems extends DBObject
         //5. Return the results
         return;
     }
-
 }
 ?>

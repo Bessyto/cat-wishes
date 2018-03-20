@@ -1,8 +1,8 @@
 <?php
 /**
- * The basic class for connecting to the database.
+ * Class DBItem extends DBObject adding the ability to get an item.
  *
- * @author Melanie Felton
+ * @author Melanie Felton & Bessy Torres-Miller
  * @copyright  2018
  * @version 0.1
  */
@@ -11,13 +11,14 @@
 /**
  * Class DBItem extends DBObject adding the ability to get an item.
  *
- * @author Melanie Felton
+ * @author Melanie Felton & Bessy Torres-Miller
  * @copyright  2018
  */
 class DBItem extends DBObject
 {
     /**
      * Function to add an item to the db
+     *
      * @param $table - table in database that item should be added to
      * @param $name - name of item to add
      * @param $description - description of item to add
@@ -64,6 +65,7 @@ class DBItem extends DBObject
 
     /**
      * Get One item (a single row) from Database
+     *
      * @param $table - table in database that item should be added to
      * @param $id - id number of the item to get
      * @return mixed - the result array containing information about the item
@@ -96,6 +98,7 @@ class DBItem extends DBObject
 
     /**
      * Function to remove an specific item from the db
+     *
      * @param $table - table in database that item should be added to
      * @param $id - id number of the item to get
      */

@@ -9,7 +9,8 @@
 
 
 /**
- * Class DBMembers extends DBObject adding the ability to get an item.
+ * Class DBMembers extends DBObject adding the ability to check if a member
+ * exists.
  *
  * @author Melanie Felton & Bessy Torres-Miller
  * @copyright  2018
@@ -18,10 +19,10 @@ class DBMembers extends DBObject
 {
     /**
      * Function to check if the member is in the data base
-     * @param $table
-     * @param $username
-     * @param $password
-     * @return int
+     * @param $table - table in database that item should be added to
+     * @param $username - username to check for existence
+     * @param $password - password to check if it matches
+     * @return int - which indicates the access level of the member or -1 if not a member
      */
     function checkMember($table, $username, $password)
     {

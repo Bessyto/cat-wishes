@@ -3,11 +3,11 @@
     upload.php
     IT-328
     Cat-Wishes Final Project
-    Melanie Felton
+    Melanie Felton & Bessy Torres-Miller
 
     This file checks the image that the user upload when recommends a new item.
     Check if the image file an image, check if it is repeated in the db, checks for the format
-    and size of the image.
+    and size of the image. If image name already exists, it modifies the target name.
 */
 
 $image = "";
