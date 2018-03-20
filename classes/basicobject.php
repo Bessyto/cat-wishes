@@ -27,10 +27,10 @@ class BasicObject
 
     /**
      * BasicObject constructor.
-     * @param $id
-     * @param $name
-     * @param $description
-     * @param $recommendations
+     * @param $id id of the item
+     * @param $name name of the item to construct
+     * @param $description description of the item to create
+     * @param $recommendations the number of recommendations, starts at 1
      */
     public function __construct($id = 0, $name = "Generic Item", $description = "Does nothing.", $recommendations = 0)
     {
@@ -45,7 +45,8 @@ class BasicObject
     }
 
     /**
-     * @return mixed
+     * Getter for the id of the item
+     * @return returns the id
      */
     public function getId()
     {
@@ -53,7 +54,8 @@ class BasicObject
     }
 
     /**
-     * @param mixed $id
+     * Set the id of the item
+     * @param id of the item
      */
     public function setId($id)
     {
@@ -61,7 +63,8 @@ class BasicObject
     }
 
     /**
-     * @return string
+     * Getter for the item name
+     * @return string the name of the item if there is one
      */
     public function getName()
     {
@@ -73,7 +76,8 @@ class BasicObject
     }
 
     /**
-     * @param string $name
+     * Set the name of the item
+     * @param string name of the item
      */
     public function setName($name)
     {
@@ -85,7 +89,8 @@ class BasicObject
     }
 
     /**
-     * @return string
+     * Get the description of the item
+     * @return string description of the new item
      */
     public function getDescription()
     {
@@ -93,7 +98,8 @@ class BasicObject
     }
 
     /**
-     * @param string $description
+     * Set the description of the item
+     * @param string $description of the item
      */
     public function setDescription($description)
     {
@@ -101,7 +107,8 @@ class BasicObject
     }
 
     /**
-     * @return int
+     * Getter for number of recommendations
+     * @return int number of recommendations
      */
     public function getRecommendations()
     {
@@ -109,7 +116,8 @@ class BasicObject
     }
 
     /**
-     * @param int $recommendations
+     * Set the number of recommendations in the item
+     * @param int $recommendations of the item
      */
     public function setRecommendations($recommendations)
     {

@@ -12,7 +12,7 @@ class Food extends BasicObject implements iViewable
 
     /**
      * Food constructor.
-     * @param $_image
+     * @param $_image image of the new food
      */
     public function __construct($id, $name = "Generic Food", $description = "Does nothing.", $recommendations = 0, $_image)
     {
@@ -22,7 +22,8 @@ class Food extends BasicObject implements iViewable
 
 
     /**
-     * @return mixed
+     * Getter for the image
+     * @return image
      */
     public function getImage()
     {
@@ -30,7 +31,8 @@ class Food extends BasicObject implements iViewable
     }
 
     /**
-     * @param mixed $image
+     * Setter for the image
+     * @param mixed $image image of the item
      */
     public function setImage($image)
     {

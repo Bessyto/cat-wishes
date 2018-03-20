@@ -4,13 +4,19 @@
  * the class IViewable methods
  */
 
+/**
+ * Class Toys
+ * @author Bessy Torres-Miller
+ * @author Melanie Felton
+ * @copyright 2017
+ */
 class Toys extends BasicObject implements iViewable
 {
     private $_image;
 
     /**
      * Toy constructor.
-     * @param $_image
+     * @param $_image of the object
      */
     public function __construct($id, $name = "Generic Toy", $description = "Does nothing.", $recommendations = 0, $_image)
     {
@@ -20,7 +26,8 @@ class Toys extends BasicObject implements iViewable
 
 
     /**
-     * @return mixed
+     * Getter for image
+     * @return mixed image of the item
      */
     public function getImage()
     {
@@ -28,7 +35,8 @@ class Toys extends BasicObject implements iViewable
     }
 
     /**
-     * @param mixed $image
+     * Setter for image
+     * @param mixed $image of the object
      */
     public function setImage($image)
     {

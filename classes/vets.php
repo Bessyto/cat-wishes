@@ -14,10 +14,10 @@ class Vets extends BasicObject
 {
      /**
      * Vets constructor.
-     * @param $id
-     * @param string $name
-     * @param string $description
-     * @param int $recommendations
+     * @param $id id of the vet object
+     * @param string $name of the vet
+     * @param string $description of the vet
+     * @param int $recommendations number of recommendations of the vet object, starts in 1
      *
      */
     public function __construct($id, $name = "Generic Vet", $description = "Does nothing." , $recommendations = 0)

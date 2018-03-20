@@ -12,7 +12,7 @@ class Furniture extends BasicObject implements iViewable
 
     /**
      * Toy constructor.
-     * @param $_image
+     * @param $_image image of the new furniture
      */
     public function __construct($id, $name = "Generic Furniture", $description = "Does nothing.", $recommendations = 0, $_image)
     {
@@ -22,7 +22,8 @@ class Furniture extends BasicObject implements iViewable
 
 
     /**
-     * @return mixed
+     * Getter for the image of the furniture
+     * @return mixed image of the furniture
      */
     public function getImage()
     {
@@ -30,7 +31,8 @@ class Furniture extends BasicObject implements iViewable
     }
 
     /**
-     * @param mixed $image
+     * Setter of the furniture item
+     * @param mixed $image of the furniture
      */
     public function setImage($image)
     {

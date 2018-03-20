@@ -20,10 +20,11 @@ class Member
     protected $access;
 
     /**
+     * Constructor of the class
      * Member constructor of the class
-     * @param $username
-     * @param $password
-     * @param $access
+     * @param $username name of the member
+     * @param $password password to login
+     * @param $access level access
      */
     function __construct($username, $password, $access)
     {
@@ -33,7 +34,8 @@ class Member
     }
 
     /**
-     * @return mixed
+     * Getter for the username
+     * @return mixed username of the member
      */
     public function getUsername()
     {
@@ -41,7 +43,8 @@ class Member
     }
 
     /**
-     * @param mixed $username
+     * Setter for the username
+     * @param mixed $username for the member
      */
     public function setUsername($username)
     {
@@ -49,7 +52,8 @@ class Member
     }
 
     /**
-     * @return mixed
+     * Getter for password
+     * @return mixed password used to login
      */
     public function getPassword()
     {
@@ -58,7 +62,7 @@ class Member
 
     /**
      * Password should be at 8 characters
-     * @param mixed $password
+     * @param mixed $password used to login
      */
     public function setPassword($password)
     {
@@ -70,7 +74,8 @@ class Member
     }
 
     /**
-     * @return mixed
+     * Getter for access level
+     * @return mixed access level of the user
      */
     public function getAccess()
     {
@@ -78,7 +83,8 @@ class Member
     }
 
     /**
-     * @param mixed $access
+     * Setter for access level
+     * @param mixed $access level
      */
     public function setLevel($access)
     {
